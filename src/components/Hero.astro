@@ -169,21 +169,12 @@ import heroPhoto from '../assets/images/hero-balkon.jpeg';
 
   @media (max-width: 700px) {
     .hero {
-      min-height: 680px;
+    min-height: 470px; /* skrati cijeli hero */
+    background-size: cover;
 
-      /*
-       * Na mobitelu se wide 2500x1200 slika
-       * mora cropati.
-       *
-       * Ako je glavni dio fotografije više
-       * lijevo/desno, promijeni center u:
-       *
-       * 35% center
-       * ili
-       * 65% center
-       */
-      background-position: center;
-    }
+    /* drži gornji dio slike, reže više s dna */
+    background-position: center top;
+  }
 
     .hero__overlay {
       background:
@@ -199,12 +190,12 @@ import heroPhoto from '../assets/images/hero-balkon.jpeg';
       display: flex;
       align-items: flex-end;
 
-      min-height: 680px;
+      min-height: 470px;
 
       padding:
-        100px
+        70px
         20px
-        64px;
+        75px;
     }
 
     .hero__intro {
