@@ -176,32 +176,85 @@ const features = [
      is meant to be a transparent PNG. We're still showing an opaque placeholder box
      here, so per the handoff's own fallback note, stack image-then-text instead of
      letting a solid rectangle collide with the copy. */
-  @media (max-width: 420px) {
-    .profil__stage {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 48px;
-    }
-
-    .profil__image {
-      width: min(240px, 60vw);
-    }
-
-    .profil__column {
-      width: 100%;
-      padding: 0;
-      gap: 40px;
-    }
-
-    .profil__feat,
-    .profil__feat[data-side='left'],
-    .profil__feat[data-side='right'] {
-      width: 100%;
-      align-self: stretch;
-      text-align: left;
-    }
+  @media (max-width: 700px) {
+  .profil {
+    margin-top: 72px;
+    padding: 64px 0 72px;
   }
+
+  .profil__intro {
+    margin-bottom: 48px;
+  }
+
+  .profil__intro h2 {
+    font-size: clamp(36px, 11vw, 48px);
+  }
+
+  .profil__intro p {
+    font-size: 14px;
+    max-width: 32ch;
+  }
+
+  .profil__stage {
+    display: grid;
+    padding: 0 20px;
+  }
+
+  /*
+   * Prozor ostaje visok i korisnik scrolla uz njega.
+   * Na mobitelu ga pomičemo na desnu stranu.
+   */
+  .profil__image {
+    grid-area: 1 / 1;
+    justify-self: end;
+
+    width: min(42vw, 165px);
+  }
+
+  .profil__image :global(img) {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /*
+   * Column zauzima istu visinu kao slika.
+   * justify-content: space-between rasporedi svih 6 featurea
+   * duž cijelog prozora.
+   */
+  .profil__column {
+    grid-area: 1 / 1;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 24px 0;
+    gap: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .profil__feat,
+  .profil__feat[data-side='left'],
+  .profil__feat[data-side='right'] {
+    width: calc(100% - min(42vw, 165px) - 18px);
+
+    align-self: flex-start;
+    text-align: left;
+  }
+
+  .profil__feat h3 {
+    font-size: clamp(20px, 5.8vw, 25px);
+    margin-bottom: 6px;
+  }
+
+  .profil__feat p {
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+}
 </style>
 
 <script>
