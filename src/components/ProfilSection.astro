@@ -39,7 +39,10 @@ const features = [
 <section id="profil" class="profil">
   <div class="profil__intro">
     <h2>Više od <span class="accent">prozora</span></h2>
-    <p>Pametni sustavi, vrhunski materijali i precizna ugradnja za komfor koji traje godinama.</p>
+    <p>
+      Pametni sustavi, vrhunski materijali i precizna ugradnja
+      za komfor koji traje godinama.
+    </p>
   </div>
 
   <div class="profil__stage">
@@ -48,7 +51,7 @@ const features = [
         src={profilPhoto}
         alt="Bočni presjek PVC prozora Elegant 76 X, prikazan otvoren — vidljiv šesterokomorni profil i okov"
         widths={[320, 480, 640, 840]}
-        sizes="(min-width: 900px) 420px, 30vw"
+        sizes="(max-width: 700px) 42vw, (min-width: 900px) 420px, 30vw"
         format="webp"
         quality={82}
         loading="lazy"
@@ -56,12 +59,18 @@ const features = [
     </div>
 
     <div class="profil__column">
-      {features.map((f) => (
-        <div class="profil__feat" data-feat data-side={f.side}>
-          <h3>{f.title}</h3>
-          <p>{f.text}</p>
-        </div>
-      ))}
+      {
+        features.map((f) => (
+          <div
+            class="profil__feat"
+            data-feat
+            data-side={f.side}
+          >
+            <h3>{f.title}</h3>
+            <p>{f.text}</p>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>
@@ -112,8 +121,11 @@ const features = [
     padding: 0 var(--content-pad);
   }
 
-  /* Both children occupy the same grid cell — the tall image sits centered behind/
-     between the text column, which is the "scroll past a tall image" mechanic. */
+  /*
+   * DESKTOP:
+   * Slika je centrirana.
+   * Tekstovi su raspoređeni lijevo i desno.
+   */
   .profil__image {
     grid-area: 1 / 1;
     justify-self: center;
@@ -129,9 +141,11 @@ const features = [
   .profil__column {
     grid-area: 1 / 1;
     position: relative;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
     gap: clamp(60px, 14vh, 160px);
     padding: clamp(40px, 10vh, 120px) 0;
   }
@@ -139,10 +153,16 @@ const features = [
   .profil__feat {
     opacity: 0;
     transform: translateY(16px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-    /* Width is computed from the space free beside the image, not from the column,
-       so text never overlaps the tall image at ≥~768px. */
-    width: clamp(150px, calc(50% - clamp(160px, 30vw, 420px) / 2 - 30px), 340px);
+
+    transition:
+      opacity 0.7s ease,
+      transform 0.7s ease;
+
+    width: clamp(
+      150px,
+      calc(50% - clamp(160px, 30vw, 420px) / 2 - 30px),
+      340px
+    );
   }
 
   .profil__feat[data-side='left'] {
@@ -160,6 +180,7 @@ const features = [
     font-weight: 400;
     font-size: clamp(20px, 2.4vw, 30px);
     line-height: 1.1;
+
     margin: 0 0 10px;
     color: var(--bone);
   }
@@ -167,108 +188,148 @@ const features = [
   .profil__feat p {
     font-size: clamp(13px, 1.1vw, 15px);
     line-height: 1.6;
+
     color: var(--muted-on-ink);
     margin: 0;
   }
 
-  /* The handoff's formula keeps text clear of the image down to ~420px by design.
-     Below that it deliberately allows a slight overlap ONLY because the real asset
-     is meant to be a transparent PNG. We're still showing an opaque placeholder box
-     here, so per the handoff's own fallback note, stack image-then-text instead of
-     letting a solid rectangle collide with the copy. */
+  /*
+   * MOBILE
+   *
+   * Prozor ide lijevo.
+   * SVI tekstovi idu desno.
+   * Visina column elementa prati visinu slike.
+   */
   @media (max-width: 700px) {
-  .profil {
-    margin-top: 72px;
-    padding: 64px 0 72px;
-  }
+    .profil {
+      margin-top: 72px;
+      padding: 64px 0 72px;
+    }
 
-  .profil__intro {
-    margin-bottom: 48px;
-  }
+    .profil__intro {
+      margin-bottom: 48px;
+    }
 
-  .profil__intro h2 {
-    font-size: clamp(36px, 11vw, 48px);
-  }
+    .profil__intro h2 {
+      font-size: clamp(36px, 11vw, 48px);
+    }
 
-  .profil__intro p {
-    font-size: 14px;
-    max-width: 32ch;
-  }
+    .profil__intro p {
+      font-size: 14px;
+      max-width: 32ch;
+    }
 
-  .profil__stage {
-    display: grid;
-    padding: 0 20px;
+    .profil__stage {
+      display: grid;
+      padding: 0 20px;
+    }
+
+    /*
+     * PROZOR LIJEVO
+     */
+    .profil__image {
+      grid-area: 1 / 1;
+      justify-self: start;
+
+      width: min(42vw, 165px);
+    }
+
+    .profil__image :global(img) {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /*
+     * Tekstualni stupac zauzima istu grid ćeliju
+     * i istu visinu kao prozor.
+     */
+    .profil__column {
+      grid-area: 1 / 1;
+
+      width: 100%;
+      height: 100%;
+
+      padding: 24px 0;
+      gap: 0;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /*
+     * SVI TEKSTOVI DESNO
+     *
+     * Ignoriramo desktop data-side left/right
+     * i sve ih poravnamo jednako.
+     */
+    .profil__feat,
+    .profil__feat[data-side='left'],
+    .profil__feat[data-side='right'] {
+      width: calc(100% - min(42vw, 165px) - 24px);
+
+      align-self: flex-end;
+      text-align: left;
+    }
+
+    .profil__feat h3 {
+      font-size: clamp(20px, 5.8vw, 25px);
+      margin-bottom: 6px;
+    }
+
+    .profil__feat p {
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
   }
 
   /*
-   * Prozor ostaje visok i korisnik scrolla uz njega.
-   * Na mobitelu ga pomičemo na desnu stranu.
+   * Vrlo uski mobiteli.
+   * Malo smanjujemo prozor da tekst dobije više prostora.
    */
-  .profil__image {
-    grid-area: 1 / 1;
-    justify-self: end;
+  @media (max-width: 360px) {
+    .profil__stage {
+      padding: 0 16px;
+    }
 
-    width: min(42vw, 165px);
+    .profil__image {
+      width: 38vw;
+    }
+
+    .profil__feat,
+    .profil__feat[data-side='left'],
+    .profil__feat[data-side='right'] {
+      width: calc(100% - 38vw - 18px);
+    }
+
+    .profil__feat h3 {
+      font-size: 19px;
+    }
+
+    .profil__feat p {
+      font-size: 11.5px;
+    }
   }
-
-  .profil__image :global(img) {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  /*
-   * Column zauzima istu visinu kao slika.
-   * justify-content: space-between rasporedi svih 6 featurea
-   * duž cijelog prozora.
-   */
-  .profil__column {
-    grid-area: 1 / 1;
-
-    width: 100%;
-    height: 100%;
-
-    padding: 24px 0;
-    gap: 0;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .profil__feat,
-  .profil__feat[data-side='left'],
-  .profil__feat[data-side='right'] {
-    width: calc(100% - min(42vw, 165px) - 18px);
-
-    align-self: flex-start;
-    text-align: left;
-  }
-
-  .profil__feat h3 {
-    font-size: clamp(20px, 5.8vw, 25px);
-    margin-bottom: 6px;
-  }
-
-  .profil__feat p {
-    font-size: 12.5px;
-    line-height: 1.5;
-  }
-}
 </style>
 
 <script>
-  // Scroll reveal — the only animation on the site. Reimplements the handoff's
-  // componentDidMount/componentWillUnmount logic verbatim.
   function initProfilReveal() {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const items = document.querySelectorAll<HTMLElement>('#profil [data-feat]');
+    const reduced = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+    const items =
+      document.querySelectorAll<HTMLElement>(
+        '#profil [data-feat]'
+      );
 
     if (reduced) {
       items.forEach((el) => {
         el.style.opacity = '1';
         el.style.transform = 'none';
       });
+
       return;
     }
 
@@ -277,13 +338,17 @@ const features = [
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const target = entry.target as HTMLElement;
+
             target.style.opacity = '1';
             target.style.transform = 'none';
+
             io.unobserve(target);
           }
         });
       },
-      { rootMargin: '0px 0px -22% 0px' }
+      {
+        rootMargin: '0px 0px -22% 0px',
+      }
     );
 
     items.forEach((el) => io.observe(el));

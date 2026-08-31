@@ -2,6 +2,11 @@
 import '../styles/fonts.css';
 import '../styles/global.css';
 
+import fraunces400Latin from '../assets/fonts/fraunces-400-latin.woff2?url';
+import fraunces400LatinExt from '../assets/fonts/fraunces-400-latin-ext.woff2?url';
+import inter400Latin from '../assets/fonts/inter-400-latin.woff2?url';
+import inter400LatinExt from '../assets/fonts/inter-400-latin-ext.woff2?url';
+
 interface Props {
   title: string;
   description: string;
@@ -33,10 +38,10 @@ const siteName = 'Lovrić Vision';
 
     <!-- Self-hosted fonts: preload the above-the-fold weights (Fraunces 400 for the H1,
          Inter 400 for the hero paragraph). Other weights load lazily via @font-face. -->
-    <link rel="preload" href="/fonts/fraunces-400-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/fraunces-400-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/inter-400-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={fraunces400Latin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={fraunces400LatinExt} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={inter400Latin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={inter400LatinExt} as="font" type="font/woff2" crossorigin />
 
     <title>{title} · {siteName}</title>
     <meta name="description" content={description} />
