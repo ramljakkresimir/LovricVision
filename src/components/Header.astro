@@ -1,8 +1,4 @@
 ---
-// Sticky header. "Stolarija" / "Projekti" are homepage-only sections, so they stay as
-// "/#anchor" links (work from any page — the browser navigates to "/" then jumps).
-// "Usluge" / "Kontakt" have their own standalone pages, so the nav points straight
-// there (the fuller destination) rather than to the homepage teaser anchors.
 import logoMark from '../assets/images/logo-mark.png';
 
 const navLinks = [
@@ -16,18 +12,58 @@ const navLinks = [
 <header class="site-header">
   <nav class="site-header__nav">
     <a href="/" class="site-header__brand">
-      <img src={logoMark.src} alt="" width="32" height="32" class="site-header__mark" />
-      <span class="site-header__wordmark">Lovrić <span class="accent">Vision</span></span>
+      <img
+        src={logoMark.src}
+        alt=""
+        width="32"
+        height="32"
+        class="site-header__mark"
+      />
+
+      <span class="site-header__wordmark">
+        Lovrić <span class="accent">Vision</span>
+      </span>
     </a>
 
+    <!-- DESKTOP NAV -->
     <div class="site-header__links">
       {navLinks.map((link) => (
         <a href={link.href}>{link.label}</a>
       ))}
     </div>
 
-    <a href="/kontakt" class="site-header__cta">Zatraži ponudu</a>
+    <a href="/kontakt" class="site-header__cta">
+      Zatraži ponudu
+    </a>
+
+    <!-- MOBILE HAMBURGER -->
+    <button
+      class="site-header__menu-toggle"
+      type="button"
+      aria-label="Otvori izbornik"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu__inner">
+      {navLinks.map((link) => (
+        <a href={link.href} class="mobile-menu__link">
+          {link.label}
+        </a>
+      ))}
+
+      <a href="/kontakt" class="mobile-menu__cta">
+        Zatraži ponudu
+      </a>
+    </div>
+  </div>
 </header>
 
 <style>
@@ -35,26 +71,34 @@ const navLinks = [
     position: sticky;
     top: 0;
     z-index: 50;
+
     background: rgba(243, 239, 231, 0.92);
+
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+
     border-bottom: 1px solid var(--hairline-on-bone);
   }
 
   .site-header__nav {
     max-width: var(--content-max);
+
     margin: 0 auto;
+
     padding: 14px 20px;
+
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
+
     gap: 12px clamp(16px, 2.4vw, 36px);
   }
 
   .site-header__brand {
     display: flex;
     align-items: center;
+
     gap: 10px;
+
     text-decoration: none;
   }
 
@@ -69,8 +113,10 @@ const navLinks = [
 
   .site-header__wordmark {
     font-family: var(--font-display);
+
     font-size: 21px;
     letter-spacing: -0.01em;
+
     color: var(--ink);
   }
 
@@ -78,11 +124,16 @@ const navLinks = [
     color: var(--copper);
   }
 
+  /*
+   * DESKTOP NAV
+   */
   .site-header__links {
     display: flex;
-    flex-wrap: wrap;
+
     gap: 12px 18px;
+
     margin-left: auto;
+
     font-size: 14.5px;
   }
 
@@ -96,16 +147,251 @@ const navLinks = [
 
   .site-header__cta {
     border: 1px solid var(--ink);
+
     padding: 9px 18px;
+
     border-radius: 2px;
+
     font-size: 14px;
+
     color: var(--ink);
-    transition: background-color 0.15s ease, color 0.15s ease;
+
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease;
   }
 
   .site-header__cta:hover {
     background: var(--ink);
     color: var(--bone);
+
     text-decoration: none;
   }
+
+  /*
+   * HAMBURGER
+   * Skriven na desktopu
+   */
+  .site-header__menu-toggle {
+    display: none;
+
+    margin-left: auto;
+
+    width: 42px;
+    height: 42px;
+
+    padding: 9px;
+
+    border: 0;
+
+    background: transparent;
+
+    cursor: pointer;
+  }
+
+  .site-header__menu-toggle span {
+    display: block;
+
+    width: 100%;
+    height: 1.5px;
+
+    margin: 5px 0;
+
+    background: var(--ink);
+
+    transition:
+      transform 0.25s ease,
+      opacity 0.25s ease;
+  }
+
+  /*
+   * MOBILE MENU
+   */
+  .mobile-menu {
+    display: none;
+  }
+
+  @media (max-width: 700px) {
+    .site-header__nav {
+      padding: 12px 18px;
+    }
+
+    /*
+     * Na mobitelu skrivamo desktop linkove
+     */
+    .site-header__links,
+    .site-header__cta {
+      display: none;
+    }
+
+    /*
+     * Prikaz hamburgera
+     */
+    .site-header__menu-toggle {
+      display: block;
+    }
+
+    /*
+     * Mobile menu je inicijalno zatvoren
+     */
+    .mobile-menu {
+      display: block;
+
+      max-height: 0;
+
+      overflow: hidden;
+
+      background: var(--bone);
+
+      border-top: 1px solid transparent;
+
+      transition:
+        max-height 0.35s ease,
+        border-color 0.35s ease;
+    }
+
+    /*
+     * Otvoreni menu
+     */
+    .mobile-menu.is-open {
+      max-height: 500px;
+
+      border-top-color: var(--hairline-on-bone);
+    }
+
+    .mobile-menu__inner {
+      padding: 10px 20px 24px;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-menu__link {
+      padding: 16px 0;
+
+      border-bottom: 1px solid var(--hairline-on-bone);
+
+      font-family: var(--font-display);
+
+      font-size: 24px;
+
+      color: var(--ink);
+
+      text-decoration: none;
+    }
+
+    .mobile-menu__link:hover {
+      color: var(--copper);
+      text-decoration: none;
+    }
+
+    .mobile-menu__cta {
+      margin-top: 22px;
+
+      padding: 14px 20px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border: 1px solid var(--ink);
+
+      color: var(--ink);
+
+      text-decoration: none;
+
+      font-size: 14px;
+    }
+
+    .mobile-menu__cta:hover {
+      background: var(--ink);
+      color: var(--bone);
+
+      text-decoration: none;
+    }
+
+    /*
+     * Hamburger -> X
+     */
+    .site-header__menu-toggle.is-open span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+
+    .site-header__menu-toggle.is-open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .site-header__menu-toggle.is-open span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
+  }
 </style>
+
+<script>
+  function initMobileMenu() {
+    const button =
+      document.querySelector<HTMLButtonElement>(
+        '.site-header__menu-toggle'
+      );
+
+    const menu =
+      document.querySelector<HTMLElement>(
+        '#mobile-menu'
+      );
+
+    if (!button || !menu) return;
+
+    function closeMenu() {
+      button.classList.remove('is-open');
+      menu.classList.remove('is-open');
+
+      button.setAttribute(
+        'aria-expanded',
+        'false'
+      );
+    }
+
+    button.addEventListener('click', () => {
+      const isOpen =
+        menu.classList.toggle('is-open');
+
+      button.classList.toggle(
+        'is-open',
+        isOpen
+      );
+
+      button.setAttribute(
+        'aria-expanded',
+        String(isOpen)
+      );
+    });
+
+    /*
+     * Kada klikneš link iz menija,
+     * automatski zatvori menu.
+     */
+    menu
+      .querySelectorAll('a')
+      .forEach((link) => {
+        link.addEventListener(
+          'click',
+          closeMenu
+        );
+      });
+
+    /*
+     * Ako povećaš ekran nazad na desktop,
+     * resetiraj mobile menu.
+     */
+    window.addEventListener(
+      'resize',
+      () => {
+        if (window.innerWidth > 700) {
+          closeMenu();
+        }
+      }
+    );
+  }
+
+  initMobileMenu();
+</script>
