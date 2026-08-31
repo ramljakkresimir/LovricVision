@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Kontakt from '../components/Kontakt.astro';
+---
+
+<Layout
+  title="Kontakt i besplatna izmjera"
+  description="Zatražite besplatnu izmjeru za PVC ili ALU stolariju u Zagrebu ili Slavoniji. Radnička cesta 52, Zagreb i Osječka 118, Slavonski Brod — odgovaramo u roku od jednog radnog dana."
+  path="/kontakt"
+>
+  <Header />
+  <main>
+    <section class="page-intro">
+      <h1>Kontakt</h1>
+      <p>
+        Javite nam se telefonom, e-mailom ili putem forme ispod — dogovaramo besplatnu izmjeru na
+        licu mjesta u Zagrebu, Slavonskom Brodu i okolici.
+      </p>
+    </section>
+    <Kontakt />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .page-intro {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: clamp(56px, 8vh, 96px) var(--content-pad) 0;
+  }
+
+  .page-intro h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(38px, 5vw, 60px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin: 0 0 18px;
+  }
+
+  .page-intro p {
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: var(--muted-on-bone);
+    max-width: 52ch;
+    margin: 0;
+  }
+</style>

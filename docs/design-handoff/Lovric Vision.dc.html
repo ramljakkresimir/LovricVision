@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<![CDATA[<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #F3EFE7; }
+  * { box-sizing: border-box; }
+  a { color: #B5793A; text-decoration: none; }
+  a:hover { color: #8E5B26; text-decoration: underline; }
+  :focus-visible { outline: 2px solid #B5793A; outline-offset: 3px; }
+  input, textarea, button { font: inherit; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</helmet>
+
+<div style="font-family: Inter, system-ui, sans-serif; color: #0E0E0D; background: #F3EFE7">
+
+  <header style="position: sticky; top: 0; z-index: 50; background: rgba(243,239,231,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(14,14,13,0.08)">
+    <nav style="max-width: 1240px; margin: 0 auto; padding: 14px 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px clamp(16px, 2.4vw, 36px)">
+      <a href="#vrh" style="font-family: Fraunces, Georgia, serif; font-size: 21px; letter-spacing: -0.01em; color: #0E0E0D; text-decoration: none">Lovrić <span style="color: #B5793A">Vision</span></a>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px 18px; margin-left: auto; font-size: 14.5px; color: #5A554C">
+        <a href="#profil" style="color: #5A554C">Stolarija</a>
+        <a href="#usluge" style="color: #5A554C">Usluge</a>
+        <a href="#projekti" style="color: #5A554C">Projekti</a>
+        <a href="#kontakt" style="color: #5A554C">Kontakt</a>
+      </div>
+      <a href="#kontakt" style="border: 1px solid #0E0E0D; padding: 9px 18px; border-radius: 2px; font-size: 14px; color: #0E0E0D" style-hover="background: #0E0E0D; color: #F3EFE7; text-decoration: none">Zatraži ponudu</a>
+    </nav>
+  </header>
+
+  <section id="vrh" style="max-width: 1240px; margin: 0 auto; padding: clamp(56px, 8vh, 96px) clamp(20px, 4vw, 28px) 0">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: clamp(40px, 5vw, 64px); align-items: end">
+      <div>
+        <h1 style="font-family: Fraunces, Georgia, serif; font-weight: 400; font-size: clamp(42px, 5.6vw, 76px); line-height: 1.02; letter-spacing: -0.025em; margin: 0 0 26px">Preciznost<br>u svakom sloju</h1>
+        <p style="font-size: 17.5px; line-height: 1.65; color: #5A554C; max-width: 46ch; margin: 0 0 36px; text-wrap: pretty">PVC i ALU stolarija za kuće i poslovne objekte u Zagrebu i Slavoniji. Mjerimo, proizvodimo i ugrađujemo prozore, balkonska vrata i klizne sustave — s dokumentiranim tehničkim vrijednostima, ne obećanjima.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px">
+          <a href="#kontakt" style="background: #0E0E0D; color: #F3EFE7; padding: 15px 30px; border-radius: 2px; font-size: 15px" style-hover="background: #B5793A; text-decoration: none">Zatraži ponudu</a>
+          <a href="#projekti" style="border: 1px solid rgba(14,14,13,0.25); color: #0E0E0D; padding: 15px 30px; border-radius: 2px; font-size: 15px" style-hover="border-color: #0E0E0D; text-decoration: none">Pogledaj radove</a>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 28px 40px; padding-bottom: 8px">
+        <div>
+          <div style="font-family: Fraunces, Georgia, serif; font-size: 34px; line-height: 1">18 god.</div>
+          <div style="font-size: 14px; color: #5A554C; margin-top: 4px">iskustva u ugradnji</div>
+        </div>
+        <div>
+          <div style="font-family: Fraunces, Georgia, serif; font-size: 34px; line-height: 1">2 pogona</div>
+          <div style="font-size: 14px; color: #5A554C; margin-top: 4px">Zagreb i Slavonija</div>
+        </div>
+        <div>
+          <div style="font-family: Fraunces, Georgia, serif; font-size: 34px; line-height: 1">0,85</div>
+          <div style="font-size: 14px; color: #5A554C; margin-top: 4px">W/m²K na Elegant 76 X</div>
+        </div>
+        <div>
+          <div style="font-family: Fraunces, Georgia, serif; font-size: 34px; line-height: 1">10 god.</div>
+          <div style="font-size: 14px; color: #5A554C; margin-top: 4px">jamstva na okov</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 72px; height: min(56vh, 520px); border: 1px solid rgba(14,14,13,0.14); background: repeating-linear-gradient(115deg, rgba(14,14,13,0.045) 0 2px, transparent 2px 13px), #EAE4D8; display: flex; align-items: flex-end; justify-content: space-between; padding: 22px 24px">
+      <span style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: #6B6558; letter-spacing: 0.02em">[ foto — otvorena balkonska vrata, pogled prema van ]</span>
+      <span style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: #6B6558">3200 × 1400 px</span>
+    </div>
+  </section>
+
+  <section id="profil" style="position: relative; background: #0E0E0D; color: #F3EFE7; margin-top: 110px; padding: clamp(70px, 12vh, 130px) 0; overflow: hidden">
+
+    <div style="max-width: 1240px; margin: 0 auto clamp(40px, 8vh, 90px); padding: 0 clamp(20px, 4vw, 28px); text-align: center">
+      <h2 style="font-family: Fraunces, Georgia, serif; font-weight: 400; font-size: clamp(34px, 5vw, 68px); line-height: 1.02; letter-spacing: -0.025em; margin: 0 0 16px">Više od <span style="color: #B5793A">prozora</span></h2>
+      <p style="font-size: clamp(14px, 1.2vw, 16.5px); line-height: 1.6; color: #A8A29A; margin: 0 auto; max-width: 46ch">Pametni sustavi, vrhunski materijali i precizna ugradnja za komfor koji traje godinama.</p>
+    </div>
+
+    <div style="position: relative; display: grid; max-width: 1240px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 28px)">
+      <div style="grid-area: 1 / 1; justify-self: center; width: clamp(160px, 30vw, 420px); aspect-ratio: 1 / 5.4; background: repeating-linear-gradient(115deg, rgba(243,239,231,0.06) 0 2px, transparent 2px 13px), linear-gradient(180deg, #24241f, #141413); border: 1px solid rgba(243,239,231,0.12); display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 16px 10px; text-align: center">
+        <span style="font-family: ui-monospace, Menlo, monospace; font-size: 10.5px; color: #8C877E; line-height: 1.5">[ vrlo visoka PNG slika prozora,<br>transparentna pozadina ]</span>
+        <span style="font-family: ui-monospace, Menlo, monospace; font-size: 10.5px; color: #8C877E">1000 × 5400 px</span>
+      </div>
+      <div style="grid-area: 1 / 1; position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: clamp(60px, 14vh, 160px); padding: clamp(40px, 10vh, 120px) 0">
+        <div data-feat style="opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; width: clamp(150px, calc(50% - clamp(160px, 30vw, 420px) / 2 - 30px), 340px); align-self: flex-start; text-align: right">
+          <h3 style="font-family: Fraunces, Georgia, serif; font-weight: 400; font-size: clamp(20px, 2.4vw, 30px); line-height: 1.1; margin: 0 0 10px; color: #F3EFE7">Elegant 76 X</h3>
+          <p style="font-size: clamp(13px, 1.1vw, 15px); line-height: 1.6; color: #A8A29A; margin: 0">Šesterokomorni profil, 76 mm ugradbene dubine. Stabilno krilo koje ostaje ravno i nakon godina rada.</p>
+        </div>
+        <div data-feat style="opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; width: clamp(150px, calc(50% - clamp(160px, 30vw, 420px) / 2 - 30px), 340px); align-self: flex-end; text-align: left">
+          <h3 style="font-family: Fraunces, Georgia, serif; font-weight: 400; font-size: clamp(20px, 2.4vw, 30px); line-height: 1.1; margin: 0 0 10px; color: #F3EFE7">Troslojno staklo</h3>
+          <p style="font-size: clamp(13px, 1.1vw, 15px); line-height: 1.6; color: #A8A29A; margin: 0">4/16/4/16/4 s dva low-e sloja i punjenjem argonom. Ug 0,5 W/m²K.</p>
+        </div>
+        <div data-feat style="opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; width: clamp(150px, calc(50% - clamp(160px, 30vw, 420px) / 2 - 30px), 340px); align-self: flex-start; text-align: right">
+          <h3 style="font-family: Fraunces, Georgia, serif; font-weight: 400; font-size: clamp(20px, 2.4vw, 30px); line-height: 1.1; margin: 0 0 10px; color: #F3EFE7">Čelično ojačanje</h3>
+          <p style="font-size: clamp(13px, 1.1vw, 15px); line-height: 1.6; color: #A8A29A; margin: 0">Zatvoreni čelični profil u okviru i krilu — statika za velike staklene površine.</p>
+        </div>
+        <div data-feat style="opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; width: clamp(150px, calc(50% - clamp(160px, 30vw, 420px) / 2 - 30px), 340px); align-self: flex-end; text-align: left">
+          <h3 style="font-family: Fraunces, Georgia, serif; font-weight: 400; font-size: clamp(20px, 2.4vw, 30px); line-height: 1.1; margin: 0 0 10px; color: #F3EFE7">Zvučna izolacija</h3>
+          <p style="font-size: clamp(13px, 1.1vw, 15px); line-height: 1.6; color: #A8A29A; margin: 0">Tri brtvene ravnine i asimetrično staklo prigušuju do 42 dB vanjske buke.</p>
+        </div>
+        <div data-feat style="opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; width: clamp(150px, calc(50% - clamp(160px, 30vw, 420px) / 2 - 30px), 340px); align-self: flex-start; text-align: right">
+          <h3 style="font-family: Fraunces, Georgia, serif; font-weight: 400; font-size: clamp(20px, 2.4vw, 30px); line-height: 1.1; margin: 0 0 10px; color: #F3EFE7">Tri brtve</h3>
+          <p style="font-size: clamp(13px, 1.1vw, 15px); line-height: 1.6; color: #A8A29A; margin: 0">Obodno brtvljenje krila zaustavlja propuh i vlagu prije nego dođu do prostora.</p>
+        </div>
+        <div data-feat style="opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; width: clamp(150px, calc(50% - clamp(160px, 30vw, 420px) / 2 - 30px), 340px); align-self: flex-end; text-align: left">
+          <h3 style="font-family: Fraunces, Georgia, serif; font-weight: 400; font-size: clamp(20px, 2.4vw, 30px); line-height: 1.1; margin: 0 0 10px; color: #F3EFE7">0,85 W/m²K</h3>
+          <p style="font-size: clamp(13px, 1.1vw, 15px); line-height: 1.6; color: #A8A29A; margin: 0">Toplinska propusnost cijelog prozora, mjereno s ugradnjom po RAL smjernicama.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="usluge" style="max-width: 1240px; margin: 0 auto; padding: clamp(72px, 11vh, 130px) clamp(20px, 4vw, 28px)">
+    <h2 style="font-family: Fraunces, Georgia, serif; font-weight: 400; font-size: clamp(30px, 3.6vw, 48px); letter-spacing: -0.02em; margin: 0 0 12px">Naše usluge</h2>
+    <p style="font-size: 16.5px; color: #5A554C; max-width: 50ch; margin: 0 0 56px; line-height: 1.6">Sve mjerimo na licu mjesta i ugrađujemo vlastitim timom. Bez podizvođača.</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: clamp(32px, 4vw, 44px)">
+      <div>
+        <div style="height: 230px; border: 1px solid rgba(14,14,13,0.14); background: repeating-linear-gradient(115deg, rgba(14,14,13,0.045) 0 2px, transparent 2px 13px), #EAE4D8; display: flex; align-items: flex-end; padding: 14px"><span style="font-family: ui-monospace, Menlo, monospace; font-size: 11.5px; color: #6B6558">[ plisé komarnik ]</span></div>
+        <h3 style="font-family: Fraunces, Georgia, serif; font-weight: 400; font-size: 24px; margin: 22px 0 10px">Plisé komarnici</h3>
+        <p style="font-size: 15px; line-height: 1.6; color: #5A554C; margin: 0">Harmonika mreža bez opruga, za prozore i vrata. Nagazni profil od 6 mm, vodilica u boji stolarije.</p>
+      </div>
+      <div>
+        <div style="height: 230px; border: 1px solid rgba(14,14,13,0.14); background: repeating-linear-gradient(115deg, rgba(14,14,13,0.045) 0 2px, transparent 2px 13px), #EAE4D8; display: flex; align-items: flex-end; padding: 14px"><span style="font-family: ui-monospace, Menlo, monospace; font-size: 11.5px; color: #6B6558">[ vanjske žaluzine ]</span></div>
+        <h3 style="font-family: Fraunces, Georgia, serif; font-weight: 400; font-size: 24px; margin: 22px 0 10px">Vanjske žaluzine</h3>
+        <p style="font-size: 15px; line-height: 1.6; color: #5A554C; margin: 0">ALU lamele C/Z 80, ručno ili motorno upravljanje sa Somfy pogonom i integracijom u pametni dom.</p>
+      </div>
+      <div>
+        <div style="height: 230px; border: 1px solid rgba(14,14,13,0.14); background: repeating-linear-gradient(115deg, rgba(14,14,13,0.045) 0 2px, transparent 2px 13px), #EAE4D8; display: flex; align-items: flex-end; padding: 14px"><span style="font-family: ui-monospace, Menlo, monospace; font-size: 11.5px; color: #6B6558">[ ALU klizni sustav ]</span></div>
+        <h3 style="font-family: Fraunces, Georgia, serif; font-weight: 400; font-size: 24px; margin: 22px 0 10px">ALU klizni sustavi</h3>
+        <p style="font-size: 15px; line-height: 1.6; color: #5A554C; margin: 0">Podizno-klizne stijene do 3 m visine krila, s ravnim pragom i staklom bez vidljivog okvira.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projekti" style="background: #0E0E0D; color: #F3EFE7; padding: clamp(80px, 11vh, 130px) 0">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 28px)">
+      <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px 40px; margin-bottom: 44px">
+        <h2 style="font-family: Fraunces, Georgia, serif; font-weight: 400; font-size: clamp(30px, 3.6vw, 48px); letter-spacing: -0.02em; margin: 0">Realizirani projekti</h2>
+        <p style="font-size: 15.5px; color: #A8A29A; max-width: 34ch; margin: 0; line-height: 1.6">Obiteljska kuća, Velika Gorica — 24 pozicije, ALU klizna stijena 4,2 m, vanjske žaluzine.</p>
+      </div>
+      <div style="height: min(64vh, 620px); border: 1px solid rgba(243,239,231,0.18); background: repeating-linear-gradient(115deg, rgba(243,239,231,0.05) 0 2px, transparent 2px 13px), #171715; display: flex; align-items: flex-end; justify-content: space-between; padding: 22px 24px">
+        <span style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: #8C877E">[ foto — pročelje kuće, večernje svjetlo ]</span>
+        <span style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: #8C877E">3200 × 1800 px</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 24px; margin-top: 24px">
+        <div style="height: 200px; border: 1px solid rgba(243,239,231,0.18); background: repeating-linear-gradient(115deg, rgba(243,239,231,0.05) 0 2px, transparent 2px 13px), #171715; display: flex; align-items: flex-end; padding: 14px"><span style="font-family: ui-monospace, Menlo, monospace; font-size: 11.5px; color: #8C877E">[ detalj okova ]</span></div>
+        <div style="height: 200px; border: 1px solid rgba(243,239,231,0.18); background: repeating-linear-gradient(115deg, rgba(243,239,231,0.05) 0 2px, transparent 2px 13px), #171715; display: flex; align-items: flex-end; padding: 14px"><span style="font-family: ui-monospace, Menlo, monospace; font-size: 11.5px; color: #8C877E">[ interijer, Osijek ]</span></div>
+        <div style="height: 200px; border: 1px solid rgba(243,239,231,0.18); background: repeating-linear-gradient(115deg, rgba(243,239,231,0.05) 0 2px, transparent 2px 13px), #171715; display: flex; align-items: flex-end; padding: 14px"><span style="font-family: ui-monospace, Menlo, monospace; font-size: 11.5px; color: #8C877E">[ ugradnja u tijeku ]</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt" style="max-width: 1240px; margin: 0 auto; padding: clamp(72px, 11vh, 130px) clamp(20px, 4vw, 28px)">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: clamp(44px, 5vw, 72px); align-items: start">
+      <div>
+        <h2 style="font-family: Fraunces, Georgia, serif; font-weight: 400; font-size: clamp(30px, 3.6vw, 48px); letter-spacing: -0.02em; margin: 0 0 18px; max-width: 14ch">Izmjera je besplatna</h2>
+        <p style="font-size: 16.5px; line-height: 1.65; color: #5A554C; max-width: 42ch; margin: 0 0 32px">Pošaljite nacrt ili samo približne dimenzije. Javljamo se u roku od jednog radnog dana s ponudom i terminom izmjere.</p>
+        <div style="display: grid; gap: 10px; font-size: 15.5px; color: #5A554C">
+          <div>Zagreb — Radnička cesta 52</div>
+          <div>Slavonski Brod — Osječka 118</div>
+          <div><a href="tel:+38512345678">+385 1 234 5678</a></div>
+          <div><a href="mailto:ponude@lovricvision.hr">ponude@lovricvision.hr</a></div>
+        </div>
+      </div>
+
+      <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+        <div style="border: 1px solid #B5793A; padding: 40px; background: rgba(181,121,58,0.07)">
+          <div style="font-family: Fraunces, Georgia, serif; font-size: 26px; margin-bottom: 10px">Upit je zaprimljen</div>
+          <p style="font-size: 15.5px; color: #5A554C; margin: 0; line-height: 1.6">Hvala. Javljamo se na navedeni kontakt u roku od jednog radnog dana.</p>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ onSubmit }}" style="display: grid; gap: 20px; border-top: 1px solid rgba(14,14,13,0.14); padding-top: 28px">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 20px">
+            <label style="display: grid; gap: 8px; font-size: 13.5px; color: #5A554C">Ime i prezime
+              <input type="text" name="ime" required style="border: none; border-bottom: 1px solid rgba(14,14,13,0.3); background: transparent; padding: 9px 0; font-size: 16px; color: #0E0E0D" style-focus="border-bottom-color: #B5793A; outline: none">
+            </label>
+            <label style="display: grid; gap: 8px; font-size: 13.5px; color: #5A554C">Telefon ili e-mail
+              <input type="text" name="kontakt" required style="border: none; border-bottom: 1px solid rgba(14,14,13,0.3); background: transparent; padding: 9px 0; font-size: 16px; color: #0E0E0D" style-focus="border-bottom-color: #B5793A; outline: none">
+            </label>
+          </div>
+          <label style="display: grid; gap: 8px; font-size: 13.5px; color: #5A554C">Lokacija objekta
+            <input type="text" name="lokacija" placeholder="Zagreb, Osijek, Slavonski Brod…" style="border: none; border-bottom: 1px solid rgba(14,14,13,0.3); background: transparent; padding: 9px 0; font-size: 16px; color: #0E0E0D" style-focus="border-bottom-color: #B5793A; outline: none">
+          </label>
+          <label style="display: grid; gap: 8px; font-size: 13.5px; color: #5A554C">Što vas zanima
+            <textarea name="poruka" rows="4" placeholder="Npr. 12 prozora i dvoja balkonska vrata, novogradnja" style="border: 1px solid rgba(14,14,13,0.2); background: transparent; padding: 12px; font-size: 16px; color: #0E0E0D; resize: vertical" style-focus="border-color: #B5793A; outline: none"></textarea>
+          </label>
+          <button type="submit" style="justify-self: start; background: #0E0E0D; color: #F3EFE7; border: none; padding: 15px 32px; border-radius: 2px; font-size: 15px; cursor: pointer" style-hover="background: #B5793A">Pošalji upit</button>
+        </form>
+      </sc-if>
+    </div>
+  </section>
+
+  <footer style="background: #0E0E0D; color: #A8A29A; padding: 64px 0 40px">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 28px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 40px">
+      <div>
+        <div style="font-family: Fraunces, Georgia, serif; font-size: 21px; color: #F3EFE7; margin-bottom: 12px">Lovrić <span style="color: #B5793A">Vision</span></div>
+        <p style="font-size: 14px; line-height: 1.6; margin: 0; max-width: 32ch">PVC i ALU stolarija, sjenila i klizni sustavi. Zagreb i Slavonija.</p>
+      </div>
+      <div style="display: grid; gap: 9px; font-size: 14px; align-content: start">
+        <div style="color: #F3EFE7">Zagreb</div>
+        <div>Radnička cesta 52</div>
+        <div>pon–pet 8–16 h</div>
+      </div>
+      <div style="display: grid; gap: 9px; font-size: 14px; align-content: start">
+        <div style="color: #F3EFE7">Slavonija</div>
+        <div>Osječka 118, Sl. Brod</div>
+        <div>pon–pet 8–16 h</div>
+      </div>
+      <div style="display: grid; gap: 9px; font-size: 14px; align-content: start">
+        <div style="color: #F3EFE7">Kontakt</div>
+        <div><a href="tel:+38512345678">+385 1 234 5678</a></div>
+        <div><a href="mailto:ponude@lovricvision.hr">ponude@lovricvision.hr</a></div>
+      </div>
+    </div>
+    <div style="max-width: 1240px; margin: 44px auto 0; padding: 20px clamp(20px, 4vw, 28px) 0; border-top: 1px solid rgba(243,239,231,0.12); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 20px; font-size: 13px">
+      <span>© 2026 Lovrić Vision d.o.o.</span>
+      <span>OIB 12345678901</span>
+    </div>
+  </footer>
+</div>]]>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { sent: false };
+
+  renderVals() {
+    return {
+      sent: this.state.sent,
+      notSent: !this.state.sent,
+      onSubmit: (e) => { e.preventDefault(); this.setState({ sent: true }); }
+    };
+  }
+
+  componentDidMount() {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const items = document.querySelectorAll('#profil [data-feat]');
+    if (reduced) {
+      items.forEach((el) => { el.style.opacity = 1; el.style.transform = 'none'; });
+      return;
+    }
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) {
+          en.target.style.opacity = 1;
+          en.target.style.transform = 'none';
+          this.io.unobserve(en.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -22% 0px' });
+    items.forEach((el) => this.io.observe(el));
+  }
+
+  componentWillUnmount() {
+    if (this.io) this.io.disconnect();
+  }
+}
+</script>
+</body>
+</html>

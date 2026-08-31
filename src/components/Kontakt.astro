@@ -1,0 +1,220 @@
+---
+---
+
+<section id="kontakt" class="kontakt">
+  <div class="kontakt__grid">
+    <div>
+      <h2>Izmjera je besplatna</h2>
+      <p class="kontakt__lede">
+        Pošaljite nacrt ili samo približne dimenzije. Javljamo se u roku od jednog radnog dana s
+        ponudom i terminom izmjere.
+      </p>
+      <div class="kontakt__info">
+        <div>Zagreb — Radnička cesta 52</div>
+        <div>Slavonski Brod — Osječka 118</div>
+        <div><a href="tel:+38512345678">+385 1 234 5678</a></div>
+        <div><a href="mailto:ponude@lovricvision.hr">ponude@lovricvision.hr</a></div>
+      </div>
+    </div>
+
+    <div class="kontakt__form-wrap">
+      <div class="kontakt__confirmation" data-confirmation hidden>
+        <div class="kontakt__confirmation-title">Upit je zaprimljen</div>
+        <p>Hvala. Javljamo se na navedeni kontakt u roku od jednog radnog dana.</p>
+      </div>
+
+      <form class="kontakt__form" data-kontakt-form>
+        <!--
+          TODO: this only fakes success client-side (see the script below). To wire up
+          real submissions, replace the fetch stub with a POST to an Astro API route
+          (e.g. src/pages/api/kontakt.ts, which can email ponude@lovricvision.hr) or a
+          hosted form service like Formspree/Basin. Remember server-side validation —
+          the honeypot below only stops the laziest bots, not a determined one.
+        -->
+        <div class="kontakt__row">
+          <label>
+            Ime i prezime
+            <input type="text" name="ime" required />
+          </label>
+          <label>
+            Telefon ili e-mail
+            <input type="text" name="kontakt" required />
+          </label>
+        </div>
+        <label>
+          Lokacija objekta
+          <input type="text" name="lokacija" placeholder="Zagreb, Osijek, Slavonski Brod…" />
+        </label>
+        <label>
+          Što vas zanima
+          <textarea name="poruka" rows="4" placeholder="Npr. 12 prozora i dvoja balkonska vrata, novogradnja"></textarea>
+        </label>
+
+        <!-- Honeypot spam trap: hidden from real visitors via CSS + tabindex/autocomplete
+             hints; bots that fill every field trip this and get silently rejected. -->
+        <div class="kontakt__honeypot" aria-hidden="true">
+          <label>
+            Web stranica
+            <input type="text" name="website" tabindex="-1" autocomplete="off" />
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn--primary kontakt__submit">Pošalji upit</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  .kontakt {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: var(--section-rhythm) var(--content-pad);
+  }
+
+  .kontakt__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+    gap: clamp(44px, 5vw, 72px);
+    align-items: start;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(30px, 3.6vw, 48px);
+    letter-spacing: -0.02em;
+    margin: 0 0 18px;
+    max-width: 14ch;
+  }
+
+  .kontakt__lede {
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: var(--muted-on-bone);
+    max-width: 42ch;
+    margin: 0 0 32px;
+  }
+
+  .kontakt__info {
+    display: grid;
+    gap: 10px;
+    font-size: 15.5px;
+    color: var(--muted-on-bone);
+  }
+
+  .kontakt__confirmation {
+    border: 1px solid var(--copper);
+    padding: 40px;
+    background: rgba(181, 121, 58, 0.07);
+  }
+
+  .kontakt__confirmation-title {
+    font-family: var(--font-display);
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+
+  .kontakt__confirmation p {
+    font-size: 15.5px;
+    color: var(--muted-on-bone);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .kontakt__form {
+    display: grid;
+    gap: 20px;
+    border-top: 1px solid var(--hairline-on-bone);
+    padding-top: 28px;
+  }
+
+  /* Beats the plain `.kontakt__form { display: grid }` rule above on specificity,
+     so toggling the `hidden` attribute in the script below actually hides it. */
+  .kontakt__form[hidden] {
+    display: none;
+  }
+
+  .kontakt__row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+    gap: 20px;
+  }
+
+  .kontakt__form label {
+    display: grid;
+    gap: 8px;
+    font-size: 13.5px;
+    color: var(--muted-on-bone);
+  }
+
+  .kontakt__form input {
+    border: none;
+    border-bottom: 1px solid rgba(14, 14, 13, 0.3);
+    background: transparent;
+    padding: 9px 0;
+    font-size: 16px;
+    color: var(--ink);
+  }
+
+  .kontakt__form input:focus-visible {
+    border-bottom-color: var(--copper);
+    outline: none;
+  }
+
+  .kontakt__form textarea {
+    border: 1px solid rgba(14, 14, 13, 0.2);
+    background: transparent;
+    padding: 12px;
+    font-size: 16px;
+    color: var(--ink);
+    resize: vertical;
+  }
+
+  .kontakt__form textarea:focus-visible {
+    border-color: var(--copper);
+    outline: none;
+  }
+
+  .kontakt__honeypot {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .kontakt__submit {
+    justify-self: start;
+    border: none;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  function initKontaktForm() {
+    const form = document.querySelector<HTMLFormElement>('#kontakt [data-kontakt-form]');
+    const confirmation = document.querySelector<HTMLElement>('#kontakt [data-confirmation]');
+    if (!form || !confirmation) return;
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      // Honeypot check — a filled-in hidden field means a bot, not a visitor.
+      const honeypot = form.querySelector<HTMLInputElement>('input[name="website"]');
+      if (honeypot && honeypot.value.trim() !== '') {
+        return;
+      }
+
+      // TODO: replace with a real submission, e.g.:
+      //   await fetch('/api/kontakt', { method: 'POST', body: new FormData(form) });
+      // and only reveal the confirmation state once that resolves successfully.
+
+      form.hidden = true;
+      confirmation.hidden = false;
+    });
+  }
+
+  initKontaktForm();
+</script>

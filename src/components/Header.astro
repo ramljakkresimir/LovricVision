@@ -1,0 +1,109 @@
+---
+// Sticky header. "Stolarija" / "Projekti" are homepage-only sections, so they stay as
+// "/#anchor" links (work from any page — the browser navigates to "/" then jumps).
+// "Usluge" / "Kontakt" have their own standalone pages, so the nav points straight
+// there (the fuller destination) rather than to the homepage teaser anchors.
+const navLinks = [
+  { href: '/#profil', label: 'Stolarija' },
+  { href: '/usluge', label: 'Usluge' },
+  { href: '/#projekti', label: 'Projekti' },
+  { href: '/kontakt', label: 'Kontakt' },
+];
+---
+
+<header class="site-header">
+  <nav class="site-header__nav">
+    <a href="/" class="site-header__brand">
+      <img src="/logo-mark.png" alt="" width="32" height="32" class="site-header__mark" />
+      <span class="site-header__wordmark">Lovrić <span class="accent">Vision</span></span>
+    </a>
+
+    <div class="site-header__links">
+      {navLinks.map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+    </div>
+
+    <a href="/kontakt" class="site-header__cta">Zatraži ponudu</a>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(243, 239, 231, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--hairline-on-bone);
+  }
+
+  .site-header__nav {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 14px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px clamp(16px, 2.4vw, 36px);
+  }
+
+  .site-header__brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .site-header__brand:hover {
+    text-decoration: none;
+  }
+
+  .site-header__mark {
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .site-header__wordmark {
+    font-family: var(--font-display);
+    font-size: 21px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .site-header__wordmark .accent {
+    color: var(--copper);
+  }
+
+  .site-header__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 18px;
+    margin-left: auto;
+    font-size: 14.5px;
+  }
+
+  .site-header__links a {
+    color: var(--muted-on-bone);
+  }
+
+  .site-header__links a:hover {
+    color: var(--copper-dark);
+  }
+
+  .site-header__cta {
+    border: 1px solid var(--ink);
+    padding: 9px 18px;
+    border-radius: 2px;
+    font-size: 14px;
+    color: var(--ink);
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .site-header__cta:hover {
+    background: var(--ink);
+    color: var(--bone);
+    text-decoration: none;
+  }
+</style>

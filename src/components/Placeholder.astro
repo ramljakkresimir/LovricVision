@@ -1,0 +1,103 @@
+---
+// Reusable photo-placeholder block. Matches the striped repeating-linear-gradient
+// treatment from the design handoff — swap for a real <Image>/<picture> later:
+// replace the internals of THIS component and every call site updates in one place.
+//
+// variant:
+//   'bone' — light placeholder (placeholder-bone bg), used on bone-background sections
+//   'ink'  — dark placeholder (placeholder-ink bg), used on ink-background sections
+//   'tall' — the special #profil vertical window image (transparent PNG target),
+//            uses the ink→ink gradient background from the handoff
+//
+// caption / resolution: monospace labels shown in the corner, describing what real
+// photo belongs here and at what recommended resolution.
+// align: where the caption row sits ('end' = bottom, matching most placeholders)
+interface Props {
+  variant?: 'bone' | 'ink' | 'tall';
+  caption: string;
+  resolution?: string;
+  height?: string;
+  alt?: string;
+}
+
+const { variant = 'bone', caption, resolution, height, alt } = Astro.props;
+---
+
+<div
+  class:list={['placeholder', `placeholder--${variant}`]}
+  style={height ? `--placeholder-height: ${height}` : undefined}
+  role="img"
+  aria-label={alt ?? caption}
+>
+  <span class="placeholder__caption">[ {caption} ]</span>
+  {resolution && <span class="placeholder__res">{resolution}</span>}
+</div>
+
+<style>
+  .placeholder {
+    height: var(--placeholder-height, 230px);
+    border: 1px solid var(--hairline-on-bone);
+    background:
+      repeating-linear-gradient(115deg, rgba(14, 14, 13, 0.045) 0 2px, transparent 2px 13px),
+      var(--placeholder-bone);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .placeholder--ink {
+    border-color: var(--hairline-on-ink);
+    background:
+      repeating-linear-gradient(115deg, rgba(243, 239, 231, 0.05) 0 2px, transparent 2px 13px),
+      var(--placeholder-ink);
+  }
+
+  .placeholder--tall {
+    border-color: rgba(243, 239, 231, 0.12);
+    background:
+      repeating-linear-gradient(115deg, rgba(243, 239, 231, 0.06) 0 2px, transparent 2px 13px),
+      linear-gradient(180deg, #24241f, #141413);
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 16px 10px;
+    height: auto;
+    aspect-ratio: 1 / 5.4;
+  }
+
+  .placeholder__caption {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--mono-on-bone);
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+  }
+
+  .placeholder--ink .placeholder__caption,
+  .placeholder--tall .placeholder__caption {
+    color: var(--mono-on-ink);
+  }
+
+  .placeholder--tall .placeholder__caption {
+    font-size: 10.5px;
+  }
+
+  .placeholder__res {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--mono-on-bone);
+    white-space: nowrap;
+  }
+
+  .placeholder--ink .placeholder__res,
+  .placeholder--tall .placeholder__res {
+    color: var(--mono-on-ink);
+  }
+
+  .placeholder--tall .placeholder__res {
+    font-size: 10.5px;
+  }
+</style>

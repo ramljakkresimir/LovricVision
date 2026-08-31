@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import ProfilSection from '../components/ProfilSection.astro';
+import Usluge from '../components/Usluge.astro';
+import Projekti from '../components/Projekti.astro';
+import Kontakt from '../components/Kontakt.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="PVC i ALU stolarija Zagreb i Slavonija"
+  description="Lovrić Vision proizvodi i ugrađuje PVC i ALU prozore, balkonska vrata, plisé komarnike, vanjske žaluzine i ALU klizne sustave u Zagrebu i Slavoniji. Besplatna izmjera na licu mjesta."
+  path="/"
+>
+  <Header />
+  <main>
+    <Hero />
+    <ProfilSection />
+    <Usluge />
+    <Projekti />
+    <Kontakt />
+  </main>
+  <Footer />
+</Layout>

@@ -1,0 +1,89 @@
+---
+import Placeholder from './Placeholder.astro';
+
+const services = [
+  {
+    caption: 'plisé komarnik',
+    title: 'Plisé komarnici',
+    text: 'Harmonika mreža bez opruga, za prozore i vrata. Nagazni profil od 6 mm, vodilica u boji stolarije.',
+  },
+  {
+    caption: 'vanjske žaluzine',
+    title: 'Vanjske žaluzine',
+    text: 'ALU lamele C/Z 80, ručno ili motorno upravljanje sa Somfy pogonom i integracijom u pametni dom.',
+  },
+  {
+    caption: 'ALU klizni sustav',
+    title: 'ALU klizni sustavi',
+    text: 'Podizno-klizne stijene do 3 m visine krila, s ravnim pragom i staklom bez vidljivog okvira.',
+  },
+];
+---
+
+<section id="usluge" class="usluge">
+  <h2>Naše usluge</h2>
+  <p class="usluge__lede">Sve mjerimo na licu mjesta i ugrađujemo vlastitim timom. Bez podizvođača.</p>
+
+  <div class="usluge__grid">
+    {services.map((s) => (
+      <div>
+        <Placeholder caption={s.caption} alt={s.title} />
+        <h3>{s.title}</h3>
+        <p>{s.text}</p>
+      </div>
+    ))}
+  </div>
+
+  <a href="/usluge" class="usluge__more">Pogledajte sve usluge u detalje →</a>
+</section>
+
+<style>
+  .usluge {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: var(--section-rhythm) var(--content-pad);
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(30px, 3.6vw, 48px);
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+  }
+
+  .usluge__lede {
+    font-size: 16.5px;
+    color: var(--muted-on-bone);
+    max-width: 50ch;
+    margin: 0 0 56px;
+    line-height: 1.6;
+  }
+
+  .usluge__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: clamp(32px, 4vw, 44px);
+  }
+
+  .usluge__grid h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 24px;
+    margin: 22px 0 10px;
+  }
+
+  .usluge__grid p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--muted-on-bone);
+    margin: 0;
+  }
+
+  .usluge__more {
+    display: inline-block;
+    margin-top: 48px;
+    font-size: 15px;
+    color: var(--copper);
+  }
+</style>

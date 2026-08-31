@@ -1,0 +1,99 @@
+<footer class="footer">
+  <div class="footer__grid">
+    <div>
+      <div class="footer__brand">
+        <img src="/logo-mark.png" alt="" width="36" height="36" class="footer__mark" />
+        <span class="footer__wordmark">Lovrić <span class="accent">Vision</span></span>
+      </div>
+      <p>PVC i ALU stolarija, sjenila i klizni sustavi. Zagreb i Slavonija.</p>
+    </div>
+    <div class="footer__col">
+      <div class="footer__col-title">Zagreb</div>
+      <div>Radnička cesta 52</div>
+      <div>pon–pet 8–16 h</div>
+    </div>
+    <div class="footer__col">
+      <div class="footer__col-title">Slavonija</div>
+      <div>Osječka 118, Sl. Brod</div>
+      <div>pon–pet 8–16 h</div>
+    </div>
+    <div class="footer__col">
+      <div class="footer__col-title">Kontakt</div>
+      <div><a href="tel:+38512345678">+385 1 234 5678</a></div>
+      <div><a href="mailto:ponude@lovricvision.hr">ponude@lovricvision.hr</a></div>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span>© 2026 Lovrić Vision d.o.o.</span>
+    <span>OIB 12345678901</span>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--ink);
+    color: var(--muted-on-ink);
+    padding: 64px 0 40px;
+  }
+
+  .footer__grid {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0 var(--content-pad);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+    gap: 40px;
+  }
+
+  .footer__brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .footer__mark {
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .footer__wordmark {
+    font-family: var(--font-display);
+    font-size: 21px;
+    color: var(--bone);
+  }
+
+  .footer__wordmark .accent {
+    color: var(--copper);
+  }
+
+  .footer__grid p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 32ch;
+  }
+
+  .footer__col {
+    display: grid;
+    gap: 9px;
+    font-size: 14px;
+    align-content: start;
+  }
+
+  .footer__col-title {
+    color: var(--bone);
+  }
+
+  .footer__bottom {
+    max-width: var(--content-max);
+    margin: 44px auto 0;
+    padding: 20px var(--content-pad) 0;
+    border-top: 1px solid var(--hairline-on-ink);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px 20px;
+    font-size: 13px;
+  }
+</style>

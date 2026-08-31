@@ -1,0 +1,111 @@
+/* Design tokens — see README "Design Tokens" in the handoff for the source of truth. */
+:root {
+  --ink: #0e0e0d;
+  --bone: #f3efe7;
+  --copper: #b5793a;
+  --copper-dark: #8e5b26;
+  --muted-on-bone: #5a554c;
+  --muted-on-ink: #a8a29a;
+  --placeholder-bone: #eae4d8;
+  --placeholder-ink: #171715;
+  --hairline-on-bone: rgba(14, 14, 13, 0.14);
+  --hairline-on-ink: rgba(243, 239, 231, 0.14);
+  --mono-on-bone: #6b6558;
+  --mono-on-ink: #8c877e;
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --content-max: 1240px;
+  --content-pad: clamp(20px, 4vw, 28px);
+  --section-rhythm: clamp(72px, 11vh, 130px);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bone);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--copper);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--copper-dark);
+  text-decoration: underline;
+}
+
+input,
+textarea,
+button {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 3px;
+}
+
+/* Shared button styles — used by Hero, Kontakt, and the standalone pages' CTAs. */
+.btn {
+  padding: 15px 30px;
+  border-radius: 2px;
+  font-size: 15px;
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn--primary {
+  background: var(--ink);
+  color: var(--bone);
+}
+
+.btn--primary:hover {
+  background: var(--copper);
+  text-decoration: none;
+}
+
+.btn--outline {
+  border: 1px solid rgba(14, 14, 13, 0.25);
+  color: var(--ink);
+}
+
+.btn--outline:hover {
+  border-color: var(--ink);
+  text-decoration: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

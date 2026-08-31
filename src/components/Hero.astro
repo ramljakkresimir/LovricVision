@@ -1,0 +1,107 @@
+---
+import Placeholder from './Placeholder.astro';
+
+const stats = [
+  { value: '18 god.', label: 'iskustva u ugradnji' },
+  { value: '2 pogona', label: 'Zagreb i Slavonija' },
+  { value: '0,85', label: 'W/m²K na Elegant 76 X' },
+  { value: '10 god.', label: 'jamstva na okov' },
+];
+---
+
+<section id="vrh" class="hero">
+  <div class="hero__top">
+    <div class="hero__intro">
+      <h1>Preciznost<br />u svakom sloju</h1>
+      <p class="hero__lede">
+        PVC i ALU stolarija za kuće i poslovne objekte u Zagrebu i Slavoniji. Mjerimo,
+        proizvodimo i ugrađujemo prozore, balkonska vrata i klizne sustave — s
+        dokumentiranim tehničkim vrijednostima, ne obećanjima.
+      </p>
+      <div class="hero__ctas">
+        <a href="#kontakt" class="btn btn--primary">Zatraži ponudu</a>
+        <a href="#projekti" class="btn btn--outline">Pogledaj radove</a>
+      </div>
+    </div>
+
+    <div class="hero__stats">
+      {stats.map((stat) => (
+        <div>
+          <div class="hero__stat-value">{stat.value}</div>
+          <div class="hero__stat-label">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="hero__photo">
+    <Placeholder
+      caption="foto — otvorena balkonska vrata, pogled prema van"
+      resolution="3200 × 1400 px"
+      height="min(56vh, 520px)"
+      alt="Otvorena balkonska vrata, pogled prema van"
+    />
+  </div>
+</section>
+
+<style>
+  .hero {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: clamp(56px, 8vh, 96px) var(--content-pad) 0;
+  }
+
+  .hero__top {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+    gap: clamp(40px, 5vw, 64px);
+    align-items: end;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(42px, 5.6vw, 76px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin: 0 0 26px;
+  }
+
+  .hero__lede {
+    font-size: 17.5px;
+    line-height: 1.65;
+    color: var(--muted-on-bone);
+    max-width: 46ch;
+    margin: 0 0 36px;
+    text-wrap: pretty;
+  }
+
+  .hero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .hero__stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 28px 40px;
+    padding-bottom: 8px;
+  }
+
+  .hero__stat-value {
+    font-family: var(--font-display);
+    font-size: 34px;
+    line-height: 1;
+  }
+
+  .hero__stat-label {
+    font-size: 14px;
+    color: var(--muted-on-bone);
+    margin-top: 4px;
+  }
+
+  .hero__photo {
+    margin-top: 72px;
+  }
+</style>

@@ -1,0 +1,169 @@
+---
+import '../styles/fonts.css';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Path only, e.g. "/usluge" — canonical/OG URL is built from Astro.site + this. */
+  path?: string;
+  /** Optional per-page OG image; falls back to the site default. */
+  ogImage?: string;
+}
+
+const { title, description, path = '/', ogImage } = Astro.props;
+
+const canonicalURL = new URL(path, Astro.site);
+const ogImageURL = new URL(ogImage ?? '/og-default.jpg', Astro.site);
+
+const siteName = 'Lovrić Vision';
+---
+
+<!doctype html>
+<html lang="hr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Favicons — simplified transparent-background monogram cropped from the full logo -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Self-hosted fonts: preload the above-the-fold weights (Fraunces 400 for the H1,
+         Inter 400 for the hero paragraph). Other weights load lazily via @font-face. -->
+    <link rel="preload" href="/fonts/fraunces-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/fraunces-400-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-400-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
+
+    <title>{title} · {siteName}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={`${title} · ${siteName}`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:locale" content="hr_HR" />
+
+    <!-- Twitter card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} · ${siteName}`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- LocalBusiness structured data — two locations (Zagreb + Slavonski Brod).
+         Placeholder details (phone, OIB-derived identifiers, hours) per the design
+         handoff; confirm with the client before relying on this for rich results. -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'HomeAndConstructionBusiness',
+          '@id': 'https://lovricvision.hr/#zagreb',
+          name: 'Lovrić Vision — Zagreb',
+          image: ogImageURL.toString(),
+          telephone: '+385-1-234-5678',
+          email: 'ponude@lovricvision.hr',
+          url: 'https://lovricvision.hr',
+          priceRange: '€€',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: 'Radnička cesta 52',
+            addressLocality: 'Zagreb',
+            addressCountry: 'HR',
+          },
+          areaServed: ['Zagreb', 'Zagrebačka županija'],
+          openingHoursSpecification: {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+            opens: '08:00',
+            closes: '16:00',
+          },
+        },
+        {
+          '@type': 'HomeAndConstructionBusiness',
+          '@id': 'https://lovricvision.hr/#slavonski-brod',
+          name: 'Lovrić Vision — Slavonski Brod',
+          image: ogImageURL.toString(),
+          telephone: '+385-1-234-5678',
+          email: 'ponude@lovricvision.hr',
+          url: 'https://lovricvision.hr',
+          priceRange: '€€',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: 'Osječka 118',
+            addressLocality: 'Slavonski Brod',
+            addressCountry: 'HR',
+          },
+          areaServed: ['Slavonija', 'Brodsko-posavska županija', 'Osječko-baranjska županija'],
+          openingHoursSpecification: {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+            opens: '08:00',
+            closes: '16:00',
+          },
+        },
+      ],
+    })} />
+
+    <!-- TODO: Google Tag Manager — paste your container ID (GTM-XXXXXXX) below and
+         uncomment both the <head> snippet and the <body> noscript fallback in the
+         body tag further down this file. Left inert until then. -->
+    <!--
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-XXXXXXX');
+    </script>
+    -->
+
+    <!-- TODO: Meta / Facebook Pixel — paste your pixel ID below and uncomment. -->
+    <!--
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = '2.0';
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', 'YOUR_PIXEL_ID');
+      fbq('track', 'PageView');
+    </script>
+    -->
+  </head>
+  <body>
+    <!-- TODO: GTM <body> noscript fallback — uncomment together with the <head> snippet above.
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    -->
+    <slot />
+  </body>
+</html>

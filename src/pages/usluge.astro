@@ -1,0 +1,182 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Placeholder from '../components/Placeholder.astro';
+
+const services = [
+  {
+    id: 'plise-komarnici',
+    caption: 'plisé komarnik, detalj harmonike',
+    title: 'Plisé komarnici',
+    intro:
+      'Harmonika mreža bez opruga, za prozore i vrata. Nagazni profil od 6 mm, vodilica u boji stolarije.',
+    details: [
+      'Mreža se sklapa u harmoniku bočno ili odozgo, bez vidljivih opruga — tiši i dugotrajniji mehanizam od klasičnog rolo komarnika.',
+      'Nagazni prag visine samo 6 mm — bez spoticanja, prohodan i za invalidska kolica i dječja kolica.',
+      'Vodilice i okvir se boje u RAL ton stolarije (najčešće bijela, antracit RAL 7016 ili boja drva) — komarnik vizualno nestaje uz prozor.',
+      'Izvedbe za prozore, jednokrilna i dvokrilna balkonska/ulazna vrata te velike klizne otvore.',
+      'Mreža od fiberglasa otporna na UV i kukce, periva, s dvogodišnjom garancijom na mehanizam.',
+    ],
+  },
+  {
+    id: 'vanjske-zaluzine',
+    caption: 'vanjske žaluzine, ALU lamele',
+    title: 'Vanjske žaluzine',
+    intro:
+      'ALU lamele C/Z 80, ručno ili motorno upravljanje sa Somfy pogonom i integracijom u pametni dom.',
+    details: [
+      'Aluminijske lamele profila C ili Z, širine 80 mm, punjene poliuretanskom pjenom — dodatna toplinska i zvučna izolacija fasade.',
+      'Upravljanje ručno (remen/kurblu) ili motorno — Somfy tubularni motor s daljinskim upravljačem, prekidačem ili integracijom u KNX/pametni dom (Zagreb i Slavonija).',
+      'Kutija žaluzine ugrađuje se nadžbukno, podžbukno ili u AL roletnu kutiju kod novogradnje — dogovara se na izmjeri prema tipu otvora.',
+      'Boja lamela i kutije po RAL karti, uklopivo s bojom stolarije ili fasade.',
+      'Preporuka: kombinacija s komarnikom na istom otvoru — usklađujemo redoslijed ugradnje da oba sustava rade nesmetano.',
+    ],
+  },
+  {
+    id: 'alu-klizni-sustavi',
+    caption: 'ALU klizni sustav, podizno-klizna vrata',
+    title: 'ALU klizni sustavi',
+    intro:
+      'Podizno-klizne stijene do 3 m visine krila, s ravnim pragom i staklom bez vidljivog okvira.',
+    details: [
+      'Podizno-klizni (PSK) sustav — krilo teško i do nekoliko stotina kilograma podiže se i klizi na kuglicnim vodilicama, uz minimalan napor pri otvaranju.',
+      'Krila do 3 m visine i velikih širina po pozivu — velike staklene površine bez dodatnih vertikalnih podjela gdje je statika dozvoljava.',
+      'Ravni prag (bez praga ili niski alu prag 20 mm) za prohodnost invalidskih kolica i lijep prijelaz interijer–terasa.',
+      'Dvostruko ili trostruko staklo prema energetskim zahtjevima, s mogućnošću sigurnosnog (kaljenog/laminiranog) stakla.',
+      'Opcije: fiksni ugaoni spoj bez stupa, ugradnja komarnika s velikim kliznim krilom, motorizacija za velike stijene.',
+    ],
+  },
+];
+---
+
+<Layout
+  title="Usluge — plisé komarnici, vanjske žaluzine, ALU klizni sustavi"
+  description="Pregled usluga Lovrić Vision: plisé komarnici, vanjske ALU žaluzine sa Somfy pogonom i podizno-klizni ALU sustavi. Ugradnja vlastitim timom u Zagrebu i Slavoniji."
+  path="/usluge"
+>
+  <Header />
+  <main>
+    <section class="page-intro">
+      <h1>Naše usluge</h1>
+      <p>
+        Uz PVC i ALU prozore i balkonska vrata, radimo i sjenila te klizne sustave koji upotpunjuju
+        stolariju — sve mjerimo na licu mjesta i ugrađujemo vlastitim timom, bez podizvođača.
+      </p>
+    </section>
+
+    {services.map((service) => (
+      <section id={service.id} class="service">
+        <div class="service__grid">
+          <Placeholder caption={service.caption} alt={service.title} height="280px" />
+          <div>
+            <h2>{service.title}</h2>
+            <p class="service__intro">{service.intro}</p>
+            <ul class="service__details">
+              {service.details.map((line) => (
+                <li>{line}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+    ))}
+
+    <section class="page-cta">
+      <h2>Zanima vas ponuda za neku od ovih usluga?</h2>
+      <p>Javite nam okvirne dimenzije i lokaciju — javljamo se u roku od jednog radnog dana.</p>
+      <a href="/kontakt" class="btn btn--primary">Zatraži ponudu</a>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .page-intro {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: clamp(56px, 8vh, 96px) var(--content-pad) 0;
+  }
+
+  .page-intro h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(38px, 5vw, 60px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin: 0 0 18px;
+  }
+
+  .page-intro p {
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: var(--muted-on-bone);
+    max-width: 52ch;
+    margin: 0;
+  }
+
+  .service {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: var(--section-rhythm) var(--content-pad);
+    border-top: 1px solid var(--hairline-on-bone);
+  }
+
+  .service__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+    gap: clamp(36px, 5vw, 64px);
+    align-items: start;
+  }
+
+  .service h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(28px, 3.2vw, 40px);
+    letter-spacing: -0.02em;
+    margin: 0 0 14px;
+  }
+
+  .service__intro {
+    font-size: 16.5px;
+    line-height: 1.6;
+    color: var(--muted-on-bone);
+    margin: 0 0 24px;
+  }
+
+  .service__details {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding-left: 20px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--muted-on-bone);
+  }
+
+  .page-cta {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: var(--section-rhythm) var(--content-pad);
+    border-top: 1px solid var(--hairline-on-bone);
+    text-align: center;
+  }
+
+  .page-cta h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(26px, 3vw, 36px);
+    letter-spacing: -0.02em;
+    margin: 0 0 14px;
+  }
+
+  .page-cta p {
+    font-size: 16px;
+    color: var(--muted-on-bone);
+    margin: 0 0 28px;
+  }
+
+  .page-cta .btn {
+    display: inline-block;
+  }
+</style>

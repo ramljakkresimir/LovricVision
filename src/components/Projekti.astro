@@ -1,0 +1,78 @@
+---
+import Placeholder from './Placeholder.astro';
+
+const detailShots = [
+  { caption: 'detalj okova', alt: 'Detalj okova prozora' },
+  { caption: 'interijer, Osijek', alt: 'Interijer stana u Osijeku' },
+  { caption: 'ugradnja u tijeku', alt: 'Ugradnja prozora u tijeku' },
+];
+---
+
+<section id="projekti" class="projekti">
+  <div class="projekti__inner">
+    <div class="projekti__head">
+      <h2>Realizirani projekti</h2>
+      <p>Obiteljska kuća, Velika Gorica — 24 pozicije, ALU klizna stijena 4,2 m, vanjske žaluzine.</p>
+    </div>
+
+    <Placeholder
+      variant="ink"
+      caption="foto — pročelje kuće, večernje svjetlo"
+      resolution="3200 × 1800 px"
+      height="min(64vh, 620px)"
+      alt="Pročelje kuće, večernje svjetlo"
+    />
+
+    <div class="projekti__grid">
+      {detailShots.map((shot) => (
+        <Placeholder variant="ink" caption={shot.caption} height="200px" alt={shot.alt} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .projekti {
+    background: var(--ink);
+    color: var(--bone);
+    padding: clamp(80px, 11vh, 130px) 0;
+  }
+
+  .projekti__inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0 var(--content-pad);
+  }
+
+  .projekti__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px 40px;
+    margin-bottom: 44px;
+  }
+
+  .projekti__head h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(30px, 3.6vw, 48px);
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .projekti__head p {
+    font-size: 15.5px;
+    color: var(--muted-on-ink);
+    max-width: 34ch;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .projekti__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    gap: 24px;
+    margin-top: 24px;
+  }
+</style>
