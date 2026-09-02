@@ -11,8 +11,9 @@ import Kontakt from '../components/Kontakt.astro';
   path="/kontakt"
 >
   <Header />
-  <main>
+  <main id="main">
     <section class="page-intro">
+      <div class="page-intro__rule"></div>
       <h1>Kontakt</h1>
       <p>
         Javite nam se telefonom, e-mailom ili putem forme ispod — dogovaramo besplatnu izmjeru na
@@ -23,28 +24,3 @@ import Kontakt from '../components/Kontakt.astro';
   </main>
   <Footer />
 </Layout>
-
-<style>
-  .page-intro {
-    max-width: var(--content-max);
-    margin: 0 auto;
-    padding: clamp(56px, 8vh, 96px) var(--content-pad) 0;
-  }
-
-  .page-intro h1 {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(38px, 5vw, 60px);
-    line-height: 1.05;
-    letter-spacing: -0.025em;
-    margin: 0 0 18px;
-  }
-
-  .page-intro p {
-    font-size: 16.5px;
-    line-height: 1.65;
-    color: var(--muted-on-bone);
-    max-width: 52ch;
-    margin: 0;
-  }
-</style>

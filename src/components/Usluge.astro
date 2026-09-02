@@ -21,69 +21,137 @@ const services = [
 ---
 
 <section id="usluge" class="usluge">
-  <h2>Naše usluge</h2>
-  <p class="usluge__lede">Sve mjerimo na licu mjesta i ugrađujemo vlastitim timom. Bez podizvođača.</p>
+  <header class="usluge__head">
+    <h2>Naše usluge</h2>
+    <p>Sve mjerimo na licu mjesta i ugrađujemo vlastitim timom. Bez podizvođača.</p>
+  </header>
 
-  <div class="usluge__grid">
-    {services.map((s) => (
-      <div>
-        <Placeholder caption={s.caption} alt={s.title} />
-        <h3>{s.title}</h3>
-        <p>{s.text}</p>
-      </div>
+  <ol class="usluge__list">
+    {services.map((s, i) => (
+      <li class="usluge__row" data-usluge-row>
+        <div class="usluge__media">
+          <span class="usluge__index">{String(i + 1).padStart(2, '0')}</span>
+          <Placeholder caption={s.caption} alt={s.title} height="clamp(220px, 34vw, 360px)" />
+        </div>
+        <div class="usluge__body">
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+        </div>
+      </li>
     ))}
-  </div>
+  </ol>
 
-  <a href="/usluge" class="usluge__more">Pogledajte sve usluge u detalje →</a>
+  <a href="/usluge" class="usluge__all link-arrow">
+    Pogledajte sve usluge u detalje <span class="arrow" aria-hidden="true">&#8594;</span>
+  </a>
 </section>
 
 <style>
   .usluge {
     max-width: var(--content-max);
     margin: 0 auto;
-    padding: var(--section-rhythm) var(--content-pad);
+    padding: var(--section-y) var(--content-gutter);
   }
 
-  h2 {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(30px, 3.6vw, 48px);
-    letter-spacing: -0.02em;
-    margin: 0 0 12px;
+  .usluge__head {
+    max-width: 44ch;
+    margin-bottom: clamp(48px, 8vh, 88px);
   }
 
-  .usluge__lede {
-    font-size: 16.5px;
-    color: var(--muted-on-bone);
-    max-width: 50ch;
-    margin: 0 0 56px;
+  .usluge__head h2 {
+    font-size: var(--step-3);
+    font-weight: var(--fw-regular);
+    margin: 0 0 var(--space-md);
+  }
+
+  .usluge__head p {
+    font-size: var(--step-1);
+    color: var(--text-secondary);
     line-height: 1.6;
-  }
-
-  .usluge__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-    gap: clamp(32px, 4vw, 44px);
-  }
-
-  .usluge__grid h3 {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: 24px;
-    margin: 22px 0 10px;
-  }
-
-  .usluge__grid p {
-    font-size: 15px;
-    line-height: 1.6;
-    color: var(--muted-on-bone);
     margin: 0;
   }
 
-  .usluge__more {
-    display: inline-block;
-    margin-top: 48px;
-    font-size: 15px;
-    color: var(--copper);
+  .usluge__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .usluge__row {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(32px, 5vw, 72px);
+    align-items: start;
+    padding: clamp(36px, 5vw, 60px) 0;
+    border-top: 1px solid var(--border-hairline);
+  }
+
+  .usluge__row:last-child {
+    border-bottom: 1px solid var(--border-hairline);
+  }
+
+  .usluge__row:nth-child(even) .usluge__media {
+    order: 2;
+  }
+
+  .usluge__media {
+    position: relative;
+  }
+
+  .usluge__index {
+    position: absolute;
+    top: -0.7em;
+    left: -0.1em;
+    z-index: 1;
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+    font-weight: var(--fw-medium);
+    color: var(--text-primary);
+    opacity: 0.26;
+    letter-spacing: -0.02em;
+  }
+
+  .usluge__body h3 {
+    font-size: var(--step-2);
+    font-weight: var(--fw-medium);
+    margin: 0 0 var(--space-sm);
+  }
+
+  .usluge__body {
+    padding-top: 0.15em;
+  }
+
+  .usluge__body p {
+    font-size: var(--step-0);
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin: 0 0 var(--space-lg);
+    max-width: 42ch;
+  }
+
+  .usluge__all {
+    display: inline-flex;
+    margin-top: clamp(40px, 6vh, 64px);
+  }
+
+  @media (max-width: 860px) {
+    .usluge__row {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+
+    .usluge__row:nth-child(even) .usluge__media {
+      order: 0;
+    }
+
+    .usluge__body p {
+      max-width: none;
+    }
   }
 </style>
+
+<script>
+  import { revealItemsOnScroll } from '../scripts/motion';
+
+  revealItemsOnScroll('[data-usluge-row]', { staggerBy: 0.07, y: 12 });
+</script>

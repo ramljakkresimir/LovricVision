@@ -2,10 +2,8 @@
 import '../styles/fonts.css';
 import '../styles/global.css';
 
-import fraunces400Latin from '../assets/fonts/fraunces-400-latin.woff2?url';
-import fraunces400LatinExt from '../assets/fonts/fraunces-400-latin-ext.woff2?url';
-import inter400Latin from '../assets/fonts/inter-400-latin.woff2?url';
-import inter400LatinExt from '../assets/fonts/inter-400-latin-ext.woff2?url';
+import interVarLatin from '../assets/fonts/inter-var-latin.woff2?url';
+import interVarLatinExt from '../assets/fonts/inter-var-latin-ext.woff2?url';
 
 interface Props {
   title: string;
@@ -36,12 +34,28 @@ const siteName = 'Lovrić Vision';
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <!-- Self-hosted fonts: preload the above-the-fold weights (Fraunces 400 for the H1,
-         Inter 400 for the hero paragraph). Other weights load lazily via @font-face. -->
-    <link rel="preload" href={fraunces400Latin} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={fraunces400LatinExt} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={inter400Latin} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={inter400LatinExt} as="font" type="font/woff2" crossorigin />
+    <!-- Self-hosted Inter (variable, 100–900). Preload both subsets — they cover
+         everything above the fold: the wordmark "LOVRIĆ" and CTA "ZATRAŽITE" need
+         latin-ext for the Ć / Ž. -->
+    <link rel="preload" href={interVarLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={interVarLatinExt} as="font" type="font/woff2" crossorigin />
+
+    <!-- Apply hero-entrance "from" states before first paint (no flash), but only
+         when motion is allowed. Failsafe: drop them after 4s so a script that
+         never loads can't leave content hidden. -->
+    <script is:inline>
+      (function () {
+        try {
+          if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            var r = document.documentElement;
+            r.classList.add('hero-anim');
+            setTimeout(function () {
+              r.classList.remove('hero-anim');
+            }, 4000);
+          }
+        } catch (e) {}
+      })();
+    </script>
 
     <title>{title} · {siteName}</title>
     <meta name="description" content={description} />
@@ -169,6 +183,7 @@ const siteName = 'Lovrić Vision';
         style="display:none;visibility:hidden"></iframe>
     </noscript>
     -->
+    <a href="#main" class="skip-link">Prijeđi na sadržaj</a>
     <slot />
   </body>
 </html>

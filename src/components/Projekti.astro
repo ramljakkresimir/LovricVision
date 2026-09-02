@@ -10,22 +10,29 @@ const detailShots = [
 
 <section id="projekti" class="projekti">
   <div class="projekti__inner">
-    <div class="projekti__head">
+    <header class="projekti__head">
       <h2>Realizirani projekti</h2>
       <p>Obiteljska kuća, Velika Gorica — 24 pozicije, ALU klizna stijena 4,2 m, vanjske žaluzine.</p>
-    </div>
+    </header>
+  </div>
 
+  <div class="projekti__lead img-reveal" data-projekti-lead>
     <Placeholder
-      variant="ink"
       caption="foto — pročelje kuće, večernje svjetlo"
       resolution="3200 × 1800 px"
       height="min(64vh, 620px)"
       alt="Pročelje kuće, večernje svjetlo"
     />
+  </div>
 
+  <div class="projekti__inner">
     <div class="projekti__grid">
-      {detailShots.map((shot) => (
-        <Placeholder variant="ink" caption={shot.caption} height="200px" alt={shot.alt} />
+      {detailShots.map((shot, i) => (
+        <Placeholder
+          caption={shot.caption}
+          alt={shot.alt}
+          height={i === 0 ? 'clamp(220px, 30vw, 340px)' : 'clamp(180px, 24vw, 260px)'}
+        />
       ))}
     </div>
   </div>
@@ -33,15 +40,16 @@ const detailShots = [
 
 <style>
   .projekti {
-    background: var(--ink);
-    color: var(--bone);
-    padding: clamp(80px, 11vh, 130px) 0;
+    background: var(--surface-ivory);
+    color: var(--text-primary);
+    border-top: 1px solid var(--border-hairline);
+    padding: var(--section-y) 0;
   }
 
   .projekti__inner {
     max-width: var(--content-max);
     margin: 0 auto;
-    padding: 0 var(--content-pad);
+    padding: 0 var(--content-gutter);
   }
 
   .projekti__head {
@@ -49,30 +57,47 @@ const detailShots = [
     flex-wrap: wrap;
     align-items: flex-end;
     justify-content: space-between;
-    gap: 24px 40px;
-    margin-bottom: 44px;
+    gap: var(--space-lg) var(--space-2xl);
+    margin-bottom: clamp(40px, 6vh, 64px);
   }
 
   .projekti__head h2 {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(30px, 3.6vw, 48px);
-    letter-spacing: -0.02em;
+    font-size: var(--step-3);
+    font-weight: var(--fw-regular);
     margin: 0;
   }
 
   .projekti__head p {
-    font-size: 15.5px;
-    color: var(--muted-on-ink);
-    max-width: 34ch;
+    font-size: var(--step-0);
+    color: var(--text-secondary);
+    max-width: 36ch;
     margin: 0;
     line-height: 1.6;
   }
 
+  .projekti__lead {
+    max-width: var(--content-max);
+    margin: 0 auto clamp(24px, 4vw, 44px);
+    padding: 0 var(--content-gutter);
+  }
+
   .projekti__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
-    gap: 24px;
-    margin-top: 24px;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: clamp(16px, 2vw, 24px);
+    align-items: start;
+  }
+
+  @media (max-width: 720px) {
+    .projekti__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
   }
 </style>
+
+<script>
+  import { revealImageOnScroll } from '../scripts/motion';
+
+  revealImageOnScroll('[data-projekti-lead]');
+</script>

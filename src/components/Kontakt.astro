@@ -3,7 +3,7 @@
 
 <section id="kontakt" class="kontakt">
   <div class="kontakt__grid">
-    <div>
+    <div class="kontakt__aside">
       <h2>Izmjera je besplatna</h2>
       <p class="kontakt__lede">
         Pošaljite nacrt ili samo približne dimenzije. Javljamo se u roku od jednog radnog dana s
@@ -12,8 +12,8 @@
       <div class="kontakt__info">
         <div>Zagreb — Radnička cesta 52</div>
         <div>Slavonski Brod — Osječka 118</div>
-        <div><a href="tel:+38512345678">+385 1 234 5678</a></div>
-        <div><a href="mailto:ponude@lovricvision.hr">ponude@lovricvision.hr</a></div>
+        <div><a href="tel:+38512345678" class="link-underline">+385 1 234 5678</a></div>
+        <div><a href="mailto:ponude@lovricvision.hr" class="link-underline">ponude@lovricvision.hr</a></div>
       </div>
     </div>
 
@@ -34,7 +34,7 @@
         <div class="kontakt__row">
           <label>
             Ime i prezime
-            <input type="text" name="ime" required />
+            <input type="text" name="ime" autocomplete="name" required />
           </label>
           <label>
             Telefon ili e-mail
@@ -43,7 +43,7 @@
         </div>
         <label>
           Lokacija objekta
-          <input type="text" name="lokacija" placeholder="Zagreb, Osijek, Slavonski Brod…" />
+          <input type="text" name="lokacija" autocomplete="address-level2" placeholder="Zagreb, Osijek, Slavonski Brod…" />
         </label>
         <label>
           Što vas zanima
@@ -59,7 +59,9 @@
           </label>
         </div>
 
-        <button type="submit" class="btn btn--primary kontakt__submit">Pošalji upit</button>
+        <button type="submit" class="btn btn--primary btn--cta kontakt__submit">
+          Pošalji upit <span class="arrow" aria-hidden="true">&#8594;</span>
+        </button>
       </form>
     </div>
   </div>
@@ -69,68 +71,70 @@
   .kontakt {
     max-width: var(--content-max);
     margin: 0 auto;
-    padding: var(--section-rhythm) var(--content-pad);
+    padding: var(--section-y) var(--content-gutter);
   }
 
   .kontakt__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
-    gap: clamp(44px, 5vw, 72px);
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(40px, 6vw, 88px);
     align-items: start;
   }
 
-  h2 {
+  .kontakt h2 {
     font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(30px, 3.6vw, 48px);
-    letter-spacing: -0.02em;
-    margin: 0 0 18px;
-    max-width: 14ch;
+    font-weight: var(--fw-regular);
+    font-size: var(--step-3);
+    letter-spacing: var(--tracking-tight);
+    margin: 0 0 var(--space-md);
+    max-width: 12ch;
   }
 
   .kontakt__lede {
-    font-size: 16.5px;
+    font-size: var(--step-0);
     line-height: 1.65;
-    color: var(--muted-on-bone);
+    color: var(--text-secondary);
     max-width: 42ch;
-    margin: 0 0 32px;
+    margin: 0 0 var(--space-xl);
   }
 
   .kontakt__info {
     display: grid;
-    gap: 10px;
-    font-size: 15.5px;
-    color: var(--muted-on-bone);
+    gap: var(--space-sm);
+    font-size: var(--step-0);
+    color: var(--text-secondary);
+  }
+
+  .kontakt__form-wrap {
+    padding-left: clamp(0px, 4vw, 56px);
+    border-left: 1px solid var(--border-hairline);
   }
 
   .kontakt__confirmation {
-    border: 1px solid var(--copper);
-    padding: 40px;
-    background: rgba(181, 121, 58, 0.07);
+    border: 1px solid var(--accent);
+    padding: clamp(28px, 4vw, 40px);
+    background: var(--accent-tint);
   }
 
   .kontakt__confirmation-title {
     font-family: var(--font-display);
-    font-size: 26px;
-    margin-bottom: 10px;
+    font-size: var(--step-2);
+    font-weight: var(--fw-medium);
+    margin-bottom: var(--space-xs);
   }
 
   .kontakt__confirmation p {
-    font-size: 15.5px;
-    color: var(--muted-on-bone);
+    font-size: var(--step-0);
+    color: var(--text-secondary);
     margin: 0;
     line-height: 1.6;
   }
 
   .kontakt__form {
     display: grid;
-    gap: 20px;
-    border-top: 1px solid var(--hairline-on-bone);
-    padding-top: 28px;
+    gap: var(--space-lg);
   }
 
-  /* Beats the plain `.kontakt__form { display: grid }` rule above on specificity,
-     so toggling the `hidden` attribute in the script below actually hides it. */
   .kontakt__form[hidden] {
     display: none;
   }
@@ -138,42 +142,46 @@
   .kontakt__row {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
-    gap: 20px;
+    gap: var(--space-lg);
   }
 
   .kontakt__form label {
     display: grid;
-    gap: 8px;
-    font-size: 13.5px;
-    color: var(--muted-on-bone);
+    gap: var(--space-xs);
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-caps);
+    color: var(--text-secondary);
   }
 
   .kontakt__form input {
     border: none;
-    border-bottom: 1px solid rgba(14, 14, 13, 0.3);
+    border-bottom: 1px solid var(--border-input);
     background: transparent;
-    padding: 9px 0;
+    padding: 10px 0;
     font-size: 16px;
-    color: var(--ink);
+    letter-spacing: normal;
+    text-transform: none;
+    color: var(--text-primary);
   }
 
   .kontakt__form input:focus-visible {
-    border-bottom-color: var(--copper);
-    outline: none;
+    border-bottom-color: var(--accent-strong);
   }
 
   .kontakt__form textarea {
-    border: 1px solid rgba(14, 14, 13, 0.2);
+    border: 1px solid var(--border-input);
     background: transparent;
     padding: 12px;
     font-size: 16px;
-    color: var(--ink);
+    letter-spacing: normal;
+    text-transform: none;
+    color: var(--text-primary);
     resize: vertical;
   }
 
   .kontakt__form textarea:focus-visible {
-    border-color: var(--copper);
-    outline: none;
+    border-color: var(--accent-strong);
   }
 
   .kontakt__honeypot {
@@ -187,8 +195,20 @@
 
   .kontakt__submit {
     justify-self: start;
-    border: none;
-    cursor: pointer;
+    margin-top: var(--space-xs);
+  }
+
+  @media (max-width: 720px) {
+    .kontakt__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .kontakt__form-wrap {
+      padding-left: 0;
+      border-left: 0;
+      border-top: 1px solid var(--border-hairline);
+      padding-top: var(--space-xl);
+    }
   }
 </style>
 

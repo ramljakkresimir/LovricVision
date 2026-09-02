@@ -1,32 +1,35 @@
 ---
-import logoMark from '../assets/images/logo-mark.png';
 ---
 
 <footer class="footer">
   <div class="footer__grid">
-    <div>
-      <div class="footer__brand">
-        <img src={logoMark.src} alt="" width="36" height="36" class="footer__mark" />
-        <span class="footer__wordmark">Lovrić <span class="accent">Vision</span></span>
-      </div>
+    <div class="footer__brand-col">
+      <a href="/" class="footer__brand" aria-label="Lovrić Vision — početna">
+        <span class="footer__name">Lovrić</span>
+        <span class="footer__suffix">Vision</span>
+      </a>
       <p>PVC i ALU stolarija, sjenila i klizni sustavi. Zagreb i Slavonija.</p>
     </div>
+
     <div class="footer__col">
       <div class="footer__col-title">Zagreb</div>
       <div>Radnička cesta 52</div>
       <div>pon–pet 8–16 h</div>
     </div>
+
     <div class="footer__col">
       <div class="footer__col-title">Slavonija</div>
       <div>Osječka 118, Sl. Brod</div>
       <div>pon–pet 8–16 h</div>
     </div>
+
     <div class="footer__col">
       <div class="footer__col-title">Kontakt</div>
-      <div><a href="tel:+38512345678">+385 1 234 5678</a></div>
-      <div><a href="mailto:ponude@lovricvision.hr">ponude@lovricvision.hr</a></div>
+      <div><a href="tel:+38512345678" class="link-underline">+385 1 234 5678</a></div>
+      <div><a href="mailto:ponude@lovricvision.hr" class="link-underline">ponude@lovricvision.hr</a></div>
     </div>
   </div>
+
   <div class="footer__bottom">
     <span>© 2026 Lovrić Vision d.o.o.</span>
     <span>OIB 12345678901</span>
@@ -35,44 +38,44 @@ import logoMark from '../assets/images/logo-mark.png';
 
 <style>
   .footer {
-    background: var(--ink);
-    color: var(--muted-on-ink);
-    padding: 64px 0 40px;
+    background: var(--surface-ink);
+    color: var(--text-on-ink-muted);
+    padding: clamp(56px, 8vh, 88px) 0 var(--space-xl);
   }
 
   .footer__grid {
     max-width: var(--content-max);
     margin: 0 auto;
-    padding: 0 var(--content-pad);
+    padding: 0 var(--content-gutter);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
-    gap: 40px;
+    grid-template-columns: 1.4fr repeat(3, 1fr);
+    gap: clamp(28px, 4vw, 48px);
   }
 
   .footer__brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 12px;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5em;
+    margin-bottom: var(--space-md);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    line-height: 1;
+    color: var(--text-on-ink);
+    text-decoration: none;
   }
 
-  .footer__mark {
-    display: block;
-    flex-shrink: 0;
+  .footer__name {
+    font-weight: var(--fw-bold);
   }
 
-  .footer__wordmark {
-    font-family: var(--font-display);
-    font-size: 21px;
-    color: var(--bone);
+  .footer__suffix {
+    font-weight: var(--fw-regular);
+    letter-spacing: 0.2em;
   }
 
-  .footer__wordmark .accent {
-    color: var(--copper);
-  }
-
-  .footer__grid p {
-    font-size: 14px;
+  .footer__brand-col p {
+    font-size: var(--step--1);
     line-height: 1.6;
     margin: 0;
     max-width: 32ch;
@@ -81,23 +84,46 @@ import logoMark from '../assets/images/logo-mark.png';
   .footer__col {
     display: grid;
     gap: 9px;
-    font-size: 14px;
+    font-size: var(--step--1);
     align-content: start;
   }
 
   .footer__col-title {
-    color: var(--bone);
+    color: var(--text-on-ink);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-caps);
+    margin-bottom: 2px;
+  }
+
+  .footer__col a:hover {
+    color: var(--text-on-ink);
   }
 
   .footer__bottom {
     max-width: var(--content-max);
-    margin: 44px auto 0;
-    padding: 20px var(--content-pad) 0;
-    border-top: 1px solid var(--hairline-on-ink);
+    margin: clamp(40px, 6vh, 56px) auto 0;
+    padding: var(--space-lg) var(--content-gutter) 0;
+    border-top: 1px solid var(--border-hairline-ink);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 10px 20px;
-    font-size: 13px;
+    font-size: var(--step--1);
+  }
+
+  @media (max-width: 720px) {
+    .footer__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .footer__brand-col {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .footer__grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

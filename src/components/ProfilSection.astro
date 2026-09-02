@@ -38,7 +38,7 @@ const features = [
 
 <section id="profil" class="profil">
   <div class="profil__intro">
-    <h2>Više od <span class="accent">prozora</span></h2>
+    <h2>Više od prozora</h2>
     <p>
       Pametni sustavi, vrhunski materijali i precizna ugradnja
       za komfor koji traje godinama.
@@ -61,11 +61,7 @@ const features = [
     <div class="profil__column">
       {
         features.map((f) => (
-          <div
-            class="profil__feat"
-            data-feat
-            data-side={f.side}
-          >
+          <div class="profil__feat" data-feat data-side={f.side}>
             <h3>{f.title}</h3>
             <p>{f.text}</p>
           </div>
@@ -78,37 +74,31 @@ const features = [
 <style>
   .profil {
     position: relative;
-    background: var(--ink);
-    color: var(--bone);
-    margin-top: 0;
-    padding: 40px 0 clamp(70px, 12vh, 130px);
+    background: var(--surface-ink);
+    color: var(--text-on-ink);
+    padding: var(--section-y) 0 var(--section-y);
     overflow: hidden;
   }
 
   .profil__intro {
     max-width: var(--content-max);
-    margin: 0 auto clamp(40px, 8vh, 90px);
-    padding: 0 var(--content-pad);
+    margin: 0 auto clamp(48px, 9vh, 104px);
+    padding: 0 var(--content-gutter);
     text-align: center;
   }
 
   .profil__intro h2 {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(30px, 4.2vw, 58px);
-    line-height: 1.02;
-    letter-spacing: -0.025em;
-    margin: 0 0 0 0;
-  }
-
-  .profil__intro h2 .accent {
-    color: var(--copper);
+    font-weight: var(--fw-regular);
+    font-size: var(--step-3);
+    line-height: var(--lh-snug);
+    margin: 0 0 var(--space-md);
+    color: var(--text-on-ink);
   }
 
   .profil__intro p {
-    font-size: clamp(14px, 1.2vw, 16.5px);
+    font-size: var(--step-1);
     line-height: 1.6;
-    color: var(--muted-on-ink);
+    color: var(--text-on-ink-muted);
     margin: 0 auto;
     max-width: 46ch;
   }
@@ -118,14 +108,9 @@ const features = [
     display: grid;
     max-width: var(--content-max);
     margin: 0 auto;
-    padding: 0 var(--content-pad);
+    padding: 0 var(--content-gutter);
   }
 
-  /*
-   * DESKTOP:
-   * Slika je centrirana.
-   * Tekstovi su raspoređeni lijevo i desno.
-   */
   .profil__image {
     grid-area: 1 / 1;
     justify-self: center;
@@ -141,23 +126,14 @@ const features = [
   .profil__column {
     grid-area: 1 / 1;
     position: relative;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
-    gap: clamp(60px, 14vh, 160px);
-    padding: clamp(40px, 10vh, 120px) 0;
+    gap: clamp(56px, 14vh, 150px);
+    padding: clamp(40px, 10vh, 116px) 0;
   }
 
   .profil__feat {
-    opacity: 0;
-    transform: translateY(16px);
-
-    transition:
-      opacity 0.7s ease,
-      transform 0.7s ease;
-
     width: clamp(
       150px,
       calc(50% - clamp(160px, 30vw, 420px) / 2 - 30px),
@@ -177,117 +153,62 @@ const features = [
 
   .profil__feat h3 {
     font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(20px, 2.4vw, 30px);
-    line-height: 1.1;
-
-    margin: 0 0 10px;
-    color: var(--bone);
+    font-weight: var(--fw-medium);
+    font-size: var(--step-2);
+    line-height: 1.14;
+    letter-spacing: var(--tracking-tight);
+    margin: 0 0 var(--space-sm);
+    color: var(--text-on-ink);
   }
 
   .profil__feat p {
-    font-size: clamp(13px, 1.1vw, 15px);
+    font-size: var(--step-0);
     line-height: 1.6;
-
-    color: var(--muted-on-ink);
+    color: var(--text-on-ink-muted);
     margin: 0;
   }
 
-  /*
-   * MOBILE
-   *
-   * Prozor ide lijevo.
-   * SVI tekstovi idu desno.
-   * Visina column elementa prati visinu slike.
-   */
-  @media (max-width: 700px) {
+  @media (max-width: 768px) {
     .profil {
-      margin-top: 0;
-      padding: 64px 0 72px;
+      padding: var(--section-y-tight) 0;
     }
 
     .profil__intro {
-      margin-bottom: 48px;
-    }
-
-    .profil__intro h2 {
-      font-size: clamp(36px, 11vw, 48px);
-    }
-
-    .profil__intro p {
-      font-size: 14px;
-      max-width: 32ch;
+      margin-bottom: clamp(36px, 7vh, 56px);
     }
 
     .profil__stage {
-      display: grid;
-      padding: 0 20px;
+      padding: 0 var(--content-gutter);
     }
 
-    /*
-     * PROZOR LIJEVO
-     */
     .profil__image {
       grid-area: 1 / 1;
       justify-self: start;
-
       width: min(42vw, 165px);
     }
 
-    .profil__image :global(img) {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    /*
-     * Tekstualni stupac zauzima istu grid ćeliju
-     * i istu visinu kao prozor.
-     */
     .profil__column {
       grid-area: 1 / 1;
-
       width: 100%;
       height: 100%;
-
       padding: 24px 0;
       gap: 0;
-
-      display: flex;
-      flex-direction: column;
       justify-content: space-between;
     }
 
-    /*
-     * SVI TEKSTOVI DESNO
-     *
-     * Ignoriramo desktop data-side left/right
-     * i sve ih poravnamo jednako.
-     */
     .profil__feat,
     .profil__feat[data-side='left'],
     .profil__feat[data-side='right'] {
       width: calc(100% - min(42vw, 165px) - 24px);
-
       align-self: flex-end;
       text-align: left;
     }
 
     .profil__feat h3 {
-      font-size: clamp(20px, 5.8vw, 25px);
       margin-bottom: 6px;
-    }
-
-    .profil__feat p {
-      font-size: 12.5px;
-      line-height: 1.5;
     }
   }
 
-  /*
-   * Vrlo uski mobiteli.
-   * Malo smanjujemo prozor da tekst dobije više prostora.
-   */
   @media (max-width: 360px) {
     .profil__stage {
       padding: 0 16px;
@@ -302,57 +223,11 @@ const features = [
     .profil__feat[data-side='right'] {
       width: calc(100% - 38vw - 18px);
     }
-
-    .profil__feat h3 {
-      font-size: 19px;
-    }
-
-    .profil__feat p {
-      font-size: 11.5px;
-    }
   }
 </style>
 
 <script>
-  function initProfilReveal() {
-    const reduced = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches;
+  import { revealEachOnScroll } from '../scripts/motion';
 
-    const items =
-      document.querySelectorAll<HTMLElement>(
-        '#profil [data-feat]'
-      );
-
-    if (reduced) {
-      items.forEach((el) => {
-        el.style.opacity = '1';
-        el.style.transform = 'none';
-      });
-
-      return;
-    }
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const target = entry.target as HTMLElement;
-
-            target.style.opacity = '1';
-            target.style.transform = 'none';
-
-            io.unobserve(target);
-          }
-        });
-      },
-      {
-        rootMargin: '0px 0px -22% 0px',
-      }
-    );
-
-    items.forEach((el) => io.observe(el));
-  }
-
-  initProfilReveal();
+  revealEachOnScroll('#profil [data-feat]', { y: 10 });
 </script>

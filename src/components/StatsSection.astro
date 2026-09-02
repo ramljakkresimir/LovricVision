@@ -1,21 +1,9 @@
 ---
 const stats = [
-  {
-    value: '18 god.',
-    label: 'iskustva u ugradnji',
-  },
-  {
-    value: '2 pogona',
-    label: 'Zagreb i Slavonija',
-  },
-  {
-    value: '0,85',
-    label: 'W/m²K na Elegant 76 X',
-  },
-  {
-    value: '10 god.',
-    label: 'jamstva na okov',
-  },
+  { value: '18 god.', label: 'iskustva u ugradnji' },
+  { value: '2 pogona', label: 'Zagreb i Slavonija' },
+  { value: '0,85', label: 'W/m²K na Elegant 76 X' },
+  { value: '10 god.', label: 'jamstva na okov' },
 ];
 ---
 
@@ -25,10 +13,7 @@ const stats = [
       stats.map((stat) => (
         <div class="stats__item">
           <div class="stats__value">{stat.value}</div>
-
-          <div class="stats__label">
-            {stat.label}
-          </div>
+          <div class="stats__label">{stat.label}</div>
         </div>
       ))
     }
@@ -37,27 +22,21 @@ const stats = [
 
 <style>
   .stats {
-    background: var(--bone);
-
-    padding:
-      clamp(60px, 9vh, 100px)
-      var(--content-pad);
+    background: var(--surface-ivory);
+    border-block: 1px solid var(--border-hairline);
+    padding: var(--section-y-tight) var(--content-gutter);
   }
 
   .stats__inner {
     max-width: var(--content-max);
     margin: 0 auto;
-
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-
-    gap: 0;
   }
 
   .stats__item {
-    padding: 8px clamp(20px, 3vw, 42px);
-
-    border-right: 1px solid var(--hairline-on-bone);
+    padding: 4px clamp(20px, 3vw, 44px);
+    border-right: 1px solid var(--border-hairline);
   }
 
   .stats__item:first-child {
@@ -71,39 +50,31 @@ const stats = [
 
   .stats__value {
     font-family: var(--font-display);
-
-    font-size: clamp(34px, 4vw, 52px);
+    font-weight: var(--fw-bold);
+    font-size: var(--step-3);
     line-height: 1;
-
-    letter-spacing: -0.025em;
-
-    color: var(--ink);
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
   }
 
   .stats__label {
-    margin-top: 10px;
-
-    font-size: 14px;
-    line-height: 1.5;
-
-    color: var(--muted-on-bone);
+    margin-top: var(--space-sm);
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-caps);
+    line-height: 1.45;
+    color: var(--text-secondary);
   }
 
-  @media (max-width: 700px) {
-    .stats {
-      padding: 64px 20px;
-    }
-
+  @media (max-width: 820px) {
     .stats__inner {
       grid-template-columns: repeat(2, 1fr);
-
-      gap: 36px 0;
+      gap: clamp(32px, 6vw, 44px) 0;
     }
 
     .stats__item {
-      padding: 0 20px;
-
-      border-right: 1px solid var(--hairline-on-bone);
+      padding: 0 24px;
     }
 
     .stats__item:nth-child(odd) {
@@ -113,14 +84,6 @@ const stats = [
     .stats__item:nth-child(even) {
       padding-right: 0;
       border-right: 0;
-    }
-
-    .stats__value {
-      font-size: clamp(32px, 9vw, 42px);
-    }
-
-    .stats__label {
-      font-size: 13px;
     }
   }
 </style>

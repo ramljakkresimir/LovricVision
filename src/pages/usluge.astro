@@ -56,8 +56,9 @@ const services = [
   path="/usluge"
 >
   <Header />
-  <main>
+  <main id="main">
     <section class="page-intro">
+      <div class="page-intro__rule"></div>
       <h1>Naše usluge</h1>
       <p>
         Uz PVC i ALU prozore i balkonska vrata, radimo i sjenila te klizne sustave koji upotpunjuju
@@ -65,11 +66,14 @@ const services = [
       </p>
     </section>
 
-    {services.map((service) => (
+    {services.map((service, i) => (
       <section id={service.id} class="service">
         <div class="service__grid">
-          <Placeholder caption={service.caption} alt={service.title} height="280px" />
-          <div>
+          <div class="service__media">
+            <span class="service__index">{String(i + 1).padStart(2, '0')}</span>
+            <Placeholder caption={service.caption} alt={service.title} height="clamp(240px, 32vw, 340px)" />
+          </div>
+          <div class="service__body">
             <h2>{service.title}</h2>
             <p class="service__intro">{service.intro}</p>
             <ul class="service__details">
@@ -85,98 +89,114 @@ const services = [
     <section class="page-cta">
       <h2>Zanima vas ponuda za neku od ovih usluga?</h2>
       <p>Javite nam okvirne dimenzije i lokaciju — javljamo se u roku od jednog radnog dana.</p>
-      <a href="/kontakt" class="btn btn--primary">Zatraži ponudu</a>
+      <a href="/kontakt" class="btn btn--primary btn--cta">
+        Zatraži ponudu <span class="arrow" aria-hidden="true">&#8594;</span>
+      </a>
     </section>
   </main>
   <Footer />
 </Layout>
 
 <style>
-  .page-intro {
-    max-width: var(--content-max);
-    margin: 0 auto;
-    padding: clamp(56px, 8vh, 96px) var(--content-pad) 0;
-  }
-
-  .page-intro h1 {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(38px, 5vw, 60px);
-    line-height: 1.05;
-    letter-spacing: -0.025em;
-    margin: 0 0 18px;
-  }
-
-  .page-intro p {
-    font-size: 16.5px;
-    line-height: 1.65;
-    color: var(--muted-on-bone);
-    max-width: 52ch;
-    margin: 0;
-  }
-
   .service {
     max-width: var(--content-max);
     margin: 0 auto;
-    padding: var(--section-rhythm) var(--content-pad);
-    border-top: 1px solid var(--hairline-on-bone);
+    padding: clamp(48px, 7vw, 88px) var(--content-gutter);
+    border-top: 1px solid var(--border-hairline);
+  }
+
+  .service:first-of-type {
+    margin-top: clamp(40px, 6vh, 72px);
   }
 
   .service__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
-    gap: clamp(36px, 5vw, 64px);
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(32px, 5vw, 72px);
     align-items: start;
+  }
+
+  .service__media {
+    position: relative;
+  }
+
+  .service__index {
+    position: absolute;
+    top: -0.7em;
+    left: -0.1em;
+    z-index: 1;
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+    font-weight: var(--fw-medium);
+    color: var(--text-primary);
+    opacity: 0.26;
+    letter-spacing: -0.02em;
   }
 
   .service h2 {
     font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(28px, 3.2vw, 40px);
-    letter-spacing: -0.02em;
-    margin: 0 0 14px;
+    font-weight: var(--fw-regular);
+    font-size: var(--step-2);
+    letter-spacing: var(--tracking-tight);
+    margin: 0 0 var(--space-sm);
   }
 
   .service__intro {
-    font-size: 16.5px;
+    font-size: var(--step-1);
     line-height: 1.6;
-    color: var(--muted-on-bone);
-    margin: 0 0 24px;
+    color: var(--text-secondary);
+    margin: 0 0 var(--space-lg);
+    max-width: 46ch;
   }
 
   .service__details {
     display: grid;
-    gap: 12px;
+    gap: var(--space-sm);
     margin: 0;
     padding-left: 20px;
-    font-size: 15px;
+    font-size: var(--step-0);
     line-height: 1.6;
-    color: var(--muted-on-bone);
+    color: var(--text-secondary);
+  }
+
+  .service__details li {
+    max-width: 62ch;
   }
 
   .page-cta {
     max-width: var(--content-max);
     margin: 0 auto;
-    padding: var(--section-rhythm) var(--content-pad);
-    border-top: 1px solid var(--hairline-on-bone);
+    padding: clamp(56px, 9vw, 112px) var(--content-gutter);
+    border-top: 1px solid var(--border-hairline);
     text-align: center;
   }
 
   .page-cta h2 {
     font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(26px, 3vw, 36px);
-    letter-spacing: -0.02em;
-    margin: 0 0 14px;
+    font-weight: var(--fw-regular);
+    font-size: var(--step-2);
+    letter-spacing: var(--tracking-tight);
+    margin: 0 0 var(--space-sm);
   }
 
   .page-cta p {
-    font-size: 16px;
-    color: var(--muted-on-bone);
-    margin: 0 0 28px;
+    font-size: var(--step-0);
+    color: var(--text-secondary);
+    margin: 0 0 var(--space-xl);
   }
 
   .page-cta .btn {
-    display: inline-block;
+    display: inline-flex;
+  }
+
+  @media (max-width: 860px) {
+    .service__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+
+    .service__intro {
+      max-width: none;
+    }
   }
 </style>
