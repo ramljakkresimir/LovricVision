@@ -24,12 +24,13 @@ const stats = [
   .stats {
     background: var(--surface-ivory);
     border-block: 1px solid var(--border-hairline);
-    padding: var(--section-y-tight) var(--content-gutter);
+    padding: var(--section-y-tight) 0;
   }
 
   .stats__inner {
     max-width: var(--content-max);
     margin: 0 auto;
+    padding: 0 var(--content-gutter);
     display: grid;
     grid-template-columns: repeat(4, 1fr);
   }
