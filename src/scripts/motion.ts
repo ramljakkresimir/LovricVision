@@ -117,20 +117,21 @@ const clearInline = (els: HTMLElement[]): void => {
   });
 };
 
-/* Fire `fn` once, the first time `el` enters the viewport; a failsafe timer
-   guarantees it also fires if the observer never does. */
-function onceInView(el: HTMLElement, fn: () => void, failMs = 2600): void {
+/* Fire `fn` once, the first time `el` enters the viewport. Browsers without
+   IntersectionObserver support fall back to firing immediately, since there's
+   no way to observe scroll position in that case. */
+function onceInView(el: HTMLElement, fn: () => void): void {
+  if (typeof IntersectionObserver === 'undefined') {
+    fn();
+    return;
+  }
   let done = false;
-  let stop: VoidFunction | undefined;
   const run = () => {
     if (done) return;
     done = true;
-    window.clearTimeout(timer);
-    stop?.();
     fn();
   };
-  const timer = window.setTimeout(run, failMs);
-  stop = inView(el, run, { amount: 0.2, margin: '0px 0px -12% 0px' as never });
+  inView(el, run, { amount: 0.2, margin: '0px 0px -12% 0px' as never });
 }
 
 const prepHide = (els: HTMLElement[], dist: number): void => {
@@ -200,14 +201,21 @@ export function revealEachOnScroll(
 /** Editorial image: directional clip reveal when it scrolls in (pre-clipped). */
 export function revealImageOnScroll(selector: string): void {
   if (!canMotion()) return;
+
   const els = nodes(selector);
   if (!els.length) return;
 
   try {
-    els.forEach((el) => el.style.setProperty('--reveal', '100'));
-    els.forEach((el) =>
-      onceInView(el, () => imageRevealRightToLeft(el, { duration: 0.9 })),
-    );
+    els.forEach((el) => {
+      el.style.setProperty('--reveal', '100');
+
+      const trigger =
+        (el.closest('.projekt') as HTMLElement | null) ?? el;
+
+      onceInView(trigger, () => {
+        imageRevealRightToLeft(el, { duration: 0.9 });
+      });
+    });
   } catch {
     els.forEach((el) => el.style.setProperty('--reveal', '0'));
   }
