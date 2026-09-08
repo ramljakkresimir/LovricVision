@@ -2,67 +2,64 @@
 import { getProjects } from '../lib/wordpress';
 
 const projects = await getProjects();
-const project = projects[0];
-
-const featuredImage =
-  project?._embedded?.['wp:featuredmedia']?.[0]?.source_url ?? null;
-
-const details = [
-  project?.acf?.detail_image_1,
-  project?.acf?.detail_image_2,
-  project?.acf?.detail_image_3,
-]
-  .filter(Boolean)
-  .map((image) => {
-    if (typeof image === 'string') {
-      return {
-        url: image,
-        alt: project?.title?.rendered ?? '',
-      };
-    }
-
-    return {
-      url: image?.url,
-      alt: image?.alt || project?.title?.rendered || '',
-    };
-  })
-  .filter((image) => image.url);
 ---
 
 <section id="projekti" class="projekti">
   <div class="projekti__inner">
     <header class="projekti__head">
       <h2>Realizirani projekti</h2>
-      <p>
-        {project.title.rendered}, {project.acf.location} —
-        {project.acf.summary}
-      </p>
     </header>
   </div>
 
-  <div class="projekti__lead img-reveal" data-projekti-lead>
-    {featuredImage && (
-      <img
-        src={featuredImage}
-        alt={project.title.rendered}
-        loading="lazy"
-      />
-    )}
-  </div>
+  {projects.map((project) => {
+    const featuredImage =
+      project?._embedded?.['wp:featuredmedia']?.[0]?.source_url;
 
-  <div class="projekti__inner">
-    <div class="projekti__inner">
-      <div class="projekti__grid">
-        {details.map((image) => (
-          <img
-            src={image.url}
-            alt={image.alt || project.title.rendered}
-            loading="lazy"
-          />
-        ))}
-      </div>
-    </div>
-  </div>
+    const details = [
+      project?.acf?.detail_image_1,
+      project?.acf?.detail_image_2,
+      project?.acf?.detail_image_3,
+    ].filter(Boolean);
+
+    return (
+      <article class="projekt">
+        <div class="projekti__inner">
+          <header class="projekt__head">
+            <h3 set:html={project.title.rendered} />
+
+            <p>
+              {project.acf.location} — {project.acf.summary}
+            </p>
+          </header>
+        </div>
+
+        {featuredImage && (
+          <div
+            class="projekti__lead img-reveal"
+            data-projekti-lead
+          >
+            <img
+              src={featuredImage}
+              alt={project.title.rendered}
+              loading="lazy"
+            />
+          </div>
+        )}
+
+        <div class="projekti__inner">
+          <div class="projekti__grid">
+            {details.map((image) => (
+              <img
+                src={image.url}
+                alt={image.alt || project.title.rendered}
+                loading="lazy"
+              />
+            ))}
+          </div>
+        </div>
+      </article>
+    );
+  })}
 </section>
 
 <style>
@@ -127,6 +124,37 @@ const details = [
     height: clamp(220px, 26vw, 360px);
     object-fit: cover;
     display: block;
+  }
+
+  .projekt {
+    margin-bottom: clamp(80px, 12vw, 160px);
+  }
+
+  .projekt:last-child {
+    margin-bottom: 0;
+  }
+
+  .projekt__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-lg) var(--space-2xl);
+    margin-bottom: clamp(32px, 5vh, 56px);
+  }
+
+  .projekt__head h3 {
+    font-size: var(--step-2);
+    font-weight: var(--fw-regular);
+    margin: 0;
+  }
+
+  .projekt__head p {
+    font-size: var(--step-0);
+    color: var(--text-secondary);
+    max-width: 36ch;
+    margin: 0;
+    line-height: 1.6;
   }
 
   @media (max-width: 720px) {
