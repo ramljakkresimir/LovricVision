@@ -1,39 +1,66 @@
 ---
-import Placeholder from './Placeholder.astro';
+import { getProjects } from '../lib/wordpress';
 
-const detailShots = [
-  { caption: 'detalj okova', alt: 'Detalj okova prozora' },
-  { caption: 'interijer, Osijek', alt: 'Interijer stana u Osijeku' },
-  { caption: 'ugradnja u tijeku', alt: 'Ugradnja prozora u tijeku' },
-];
+const projects = await getProjects();
+const project = projects[0];
+
+const featuredImage =
+  project?._embedded?.['wp:featuredmedia']?.[0]?.source_url ?? null;
+
+const details = [
+  project?.acf?.detail_image_1,
+  project?.acf?.detail_image_2,
+  project?.acf?.detail_image_3,
+]
+  .filter(Boolean)
+  .map((image) => {
+    if (typeof image === 'string') {
+      return {
+        url: image,
+        alt: project?.title?.rendered ?? '',
+      };
+    }
+
+    return {
+      url: image?.url,
+      alt: image?.alt || project?.title?.rendered || '',
+    };
+  })
+  .filter((image) => image.url);
 ---
 
 <section id="projekti" class="projekti">
   <div class="projekti__inner">
     <header class="projekti__head">
       <h2>Realizirani projekti</h2>
-      <p>Obiteljska kuća, Velika Gorica — 24 pozicije, ALU klizna stijena 4,2 m, vanjske žaluzine.</p>
+      <p>
+        {project.title.rendered}, {project.acf.location} —
+        {project.acf.summary}
+      </p>
     </header>
   </div>
 
   <div class="projekti__lead img-reveal" data-projekti-lead>
-    <Placeholder
-      caption="foto — pročelje kuće, večernje svjetlo"
-      resolution="3200 × 1800 px"
-      height="min(64vh, 620px)"
-      alt="Pročelje kuće, večernje svjetlo"
-    />
+    {featuredImage && (
+      <img
+        src={featuredImage}
+        alt={project.title.rendered}
+        loading="lazy"
+      />
+    )}
   </div>
 
   <div class="projekti__inner">
-    <div class="projekti__grid">
-      {detailShots.map((shot, i) => (
-        <Placeholder
-          caption={shot.caption}
-          alt={shot.alt}
-          height={i === 0 ? 'clamp(220px, 30vw, 340px)' : 'clamp(180px, 24vw, 260px)'}
-        />
-      ))}
+    <div class="projekti__inner">
+      <div class="projekti__grid">
+        {details.map((image) => (
+          <img
+            src={image.url}
+            alt={image.alt || project.title.rendered}
+            loading="lazy"
+          />
+        ))}
+      </div>
     </div>
   </div>
 </section>
@@ -86,6 +113,20 @@ const detailShots = [
     grid-template-columns: 1.4fr 1fr 1fr;
     gap: clamp(16px, 2vw, 24px);
     align-items: start;
+  }
+
+  .projekti__lead img {
+    width: 100%;
+    height: clamp(420px, 60vh, 680px);
+    object-fit: cover;
+    display: block;
+  }
+
+  .projekti__grid img {
+    width: 100%;
+    height: clamp(220px, 26vw, 360px);
+    object-fit: cover;
+    display: block;
   }
 
   @media (max-width: 720px) {
